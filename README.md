@@ -2,6 +2,17 @@
 
 ## Developing
 
-To start developing locally:
-  1. `npm i -g lerna`  
-  2. `lerna run start`
+First do `npm i -g lerna`
+
+### Both at once
+
+ `lerna run start`
+
+### Backend
+
+- Go to `server/`
+- `npm run start` or
+- `npm run dev`
+
+
+### Frontend
