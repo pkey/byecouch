@@ -1,9 +1,23 @@
-import express from "express";
+import express, { Request, Response } from "express";
+import * as geolib from "geolib";
+import { GeolibInputCoordinates } from "geolib/es/types";
 require("dotenv").config();
 const app = express();
 const port = 4000;
 
-interface School {
+//Mock Data
+const activities: Activity[] = require("./data/activities.json");
+const locationsMock: Location[] = [
+  { name: "Work", lattitude: 54.6974182, longtitude: 25.2786977 }
+  //   {
+  //     name: "Antakalnio gimnazija",
+  //     lattitude: 54.7008955,
+  //     longtitude: 25.3105727
+  //   }
+];
+
+//Interfaces
+interface Spot {
   name: string;
   address: string;
   lattitude: number;
@@ -11,33 +25,60 @@ interface School {
 }
 interface Activity {
   name: string;
-  school: School;
+  spot: Spot;
   description: string;
 }
 
-const list: Activity[] = [
-  {
-    name: "Swimming",
-    description: "Swimming this is",
-    school: {
-      name: "LVJC",
-      address: "Konstiticujos pr. 25",
-      lattitude: 54.6995102,
-      longtitude: 25.2671074
+interface Location {
+  name: string;
+  lattitude: number;
+  longtitude: number;
+}
+interface closestActivitiesReq extends Request {
+  body: {
+    locations: Location[];
+  };
+}
+
+//Routes
+app.get("/", (req, res) => res.send(activities));
+
+//TODO: Change to post?
+app.get("/activities", (req: closestActivitiesReq, res: Response) => {
+  //   const locations = req.body.locations;
+  const locations = locationsMock; //TODO: Using Mock
+  switch (locations.length) {
+    case 0: {
+      res.send(activities); //Send all of np locations provided
+      break;
     }
-  },
-  {
-    name: "Dancing",
-    description: "Dancing this is",
-    school: {
-      name: "Sokiu akademija",
-      address: "Konstitucijos pr. 11",
-      lattitude: 54.69673470000001,
-      longtitude: 25.2752488
+    case 1: {
+      const point: GeolibInputCoordinates = {
+        lng: locations[0].longtitude,
+        lat: locations[0].lattitude
+      };
+      //TODO: Will calcualte everytime - could be cached or sth.
+      //TODO: A lot of mapping an remapping
+      const orderedSpots = geolib.orderByDistance(
+        point,
+        activities.map(a => {
+          return {
+            name: a.spot.name,
+            lng: a.spot.longtitude,
+            lat: a.spot.lattitude
+          };
+        })
+      );
+      res.send(orderedSpots); //TODO: Not correct format is returnd
+      break;
+    }
+    case 2: {
+      //return the ones inside the circle between the two
+    }
+    default: {
+      //if more than two - return the ones inside the circle between n+
     }
   }
-];
-
-app.get("/", (req, res) => res.send(list));
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
