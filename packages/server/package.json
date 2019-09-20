@@ -1,0 +1,18 @@
+{
+  "name": "byecouch-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node --project tsconfig.json src/app.ts",
+    "dev": "nodemon dist/app.js",
+    "test": "mocha tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  }
+}
