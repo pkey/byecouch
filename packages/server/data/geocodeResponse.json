@@ -1,0 +1,54 @@
+[
+  {
+    "formattedAddress": "Konstitucijos pr. 25, Vilnius 08105, Lithuania",
+    "latitude": 54.6995102,
+    "longitude": 25.2671074,
+    "extra": {
+      "googlePlaceId": "ChIJdaQlFf-T3UYRnxYFB36504s",
+      "confidence": 1,
+      "premise": null,
+      "subpremise": null,
+      "neighborhood": "Vilnius",
+      "establishment": null
+    },
+    "administrativeLevels": {
+      "level2long": "Vilniaus miesto savivaldybė",
+      "level2short": "Vilniaus m. sav.",
+      "level1long": "Vilniaus apskritis",
+      "level1short": "Vilniaus apskr."
+    },
+    "streetNumber": "25",
+    "streetName": "Konstitucijos prospektas",
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "countryCode": "LT",
+    "zipcode": "08105",
+    "provider": "google"
+  },
+  {
+    "formattedAddress": "Konstitucijos pr. 11, Vilnius 09319, Lithuania",
+    "latitude": 54.69673470000001,
+    "longitude": 25.2752488,
+    "extra": {
+      "googlePlaceId": "ChIJ0U_iNwGU3UYRR5WtlZ9kaj4",
+      "confidence": 1,
+      "premise": null,
+      "subpremise": null,
+      "neighborhood": "Vilnius",
+      "establishment": null
+    },
+    "administrativeLevels": {
+      "level2long": "Vilniaus miesto savivaldybė",
+      "level2short": "Vilniaus m. sav.",
+      "level1long": "Vilniaus apskritis",
+      "level1short": "Vilniaus apskr."
+    },
+    "streetNumber": "11",
+    "streetName": "Konstitucijos prospektas",
+    "city": "Vilnius",
+    "country": "Lithuania",
+    "countryCode": "LT",
+    "zipcode": "09319",
+    "provider": "google"
+  }
+]
