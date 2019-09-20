@@ -10,6 +10,7 @@ import {
     Switch
 } from 'react-router-dom';
 import Calendar from "./views/Calendar";
+import Map from './views/Map';
 
 const routing = (
         <Router>
@@ -21,8 +22,13 @@ const routing = (
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName="active" to="/Calendar">
+                        <NavLink activeClassName="active" to="/calendar">
                             Calendar
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink activeClassName="active" to="/map">
+                            Map
                         </NavLink>
                     </li>
                 </ul>
@@ -30,6 +36,7 @@ const routing = (
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route path="/calendar" component={Calendar} />
+                    <Route path="/map" component={Map} />
                 </Switch>
             </div>
         </Router>
