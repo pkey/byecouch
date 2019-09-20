@@ -2,4 +2,6 @@
 
 ## Developing
 
-To start developing locally run `lerna run start`
+To start developing locally:
+  1. `npm i -g lerna`  
+  2. `lerna run start`
