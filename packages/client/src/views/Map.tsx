@@ -6,24 +6,24 @@ const AnyReactComponent: any = ({ text }: any) => <div>{text}</div>;
 class ActivityMap extends Component {
     static defaultProps: any = {
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: 54.687157,
+            lng: 25.279652
         },
-        zoom: 11
+        zoom: 14
     };
 
     render() {
         return (
             // Important! Always set the container height explicitly
-            <div style={{ height: '100vh', width: '100%' }}>
+            <div style={{ height: '100vh', width: '100vh'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyDzPEtqIe-1ArlBZRdmFQfGEKZr1f6HwrQ' }}
-                    defaultCenter={{lat: 59, lng: 30.33}}
-                    defaultZoom={11}
+                    defaultCenter={{lat: 54.687157, lng: 25.279652}}
+                    defaultZoom={14}
                 >
                     <AnyReactComponent
-                        lat={59.955413}
-                        lng={30.337844}
+                        lat={54.687157}
+                        lng={25.279652}
                         text="My Marker"
                     />
                 </GoogleMapReact>
