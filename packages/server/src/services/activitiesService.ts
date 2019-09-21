@@ -27,10 +27,10 @@ class ActivitiesService {
               link: fields.Link,
               phoneNumber: fields.PhoneNumber,
               email: fields.Email,
-              type: fields.Type,
+              category: fields.Category[0],
               events: [],
               name: fields.Name,
-              spot: fields.Spot
+              spot: fields.Spot[0]
             });
           });
 
@@ -69,9 +69,9 @@ class ActivitiesService {
     }
   }
 
-  async getTypes() {
+  async getCategories() {
     try {
-      const types = [];
+      const categories = [];
       await this.activitiesBase("Categories")
         .select({
           // Selecting the first 3 records in Grid view:
@@ -80,8 +80,9 @@ class ActivitiesService {
         .eachPage((records, fetchNextPage) => {
           // This function (`page`) will get called for each page of records.
 
-          records.forEach(({ fields }: any) => {
-            types.push({
+          records.forEach(({ id, fields }: any) => {
+            categories.push({
+              id,
               name: fields.Name,
               color: fields.Color
             });
@@ -93,7 +94,7 @@ class ActivitiesService {
           fetchNextPage();
         });
 
-      return types;
+      return categories;
     } catch (err) {
       return err;
     }

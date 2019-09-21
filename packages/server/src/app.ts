@@ -1,21 +1,11 @@
 require("dotenv").config();
 import body_parser from "body-parser";
 import express, { Request, Response } from "express";
+import { Activity } from "./models/models";
 import activitiesService from "./services/activitiesService";
 import locationService from "./services/locationService";
 const app = express().use(body_parser.json());
 const port = process.env.PORT || 4000;
-
-//Mock Data/
-//TODO: Get actitivites from AirTable
-// const locationsMock: Location[] = [
-//   { name: "Work", latitude: 54.6974182, longitude: 25.2786977 }
-//   //   {
-//   //     name: "Antakalnio gimnazija",
-//   //     latitude: 54.7008955,
-//   //     longitude: 25.3105727
-//   //   }
-// ];
 
 //Routes
 app.get("/", (req, res) => res.send([]));
@@ -25,41 +15,34 @@ app.post("/activities", async (req: Request, res: Response) => {
     const activities = await activitiesService.getActivities();
     const spots = await activitiesService.getSpots();
 
-    const merged = [];
-    const activitiesWithSpots = activities.filter(activity => {
-      if (activity && activity.spot && activity.spot.length != 0)
-        return activity;
-    });
-
-    activitiesWithSpots.forEach(activity => {
-      spots.forEach(spot => {
-        if (activity.spot[0] === spot.id) {
-          merged.push({
-            ...activity,
-            spot
-          });
-        }
-      });
+    const categories = await activitiesService.getCategories();
+    const activitiesRes = activities.map((activity: Activity) => {
+      return {
+        ...activity,
+        spot: spots.filter(spot => spot.id === activity.spot)[0],
+        category: categories.filter(
+          category => category.id === activity.category
+        )[0]
+      };
     });
 
     if (req.body.locations) {
       const recommendations = await locationService.getMostRelevantLocations(
         req.body.locations,
-        merged
+        activitiesRes
       );
       res.send(recommendations);
     } else {
-      res.send(merged);
+      res.send(activitiesRes);
     }
   } catch (err) {
-    console.log(err);
     res.send({ err: err.toString() });
   }
 });
 
-app.get("/types", async (_, res) => {
-  const types = await activitiesService.getTypes();
-  res.send(types);
+app.get("/categories", async (_, res) => {
+  const categories = await activitiesService.getCategories();
+  res.send(categories);
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
