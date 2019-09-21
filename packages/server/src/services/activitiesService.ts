@@ -93,7 +93,6 @@ class ActivitiesService {
           // If there are no more records, `done` will get called.
           fetchNextPage();
         });
-
       return categories;
     } catch (err) {
       return err;
@@ -155,5 +154,4 @@ class ActivitiesService {
         }
       }
 }
-
 export default new ActivitiesService();
