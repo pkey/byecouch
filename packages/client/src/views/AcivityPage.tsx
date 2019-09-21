@@ -49,7 +49,7 @@ const Activity = () => (
 
         <h2 style={{ margin: '10px 0' }}>{activity.name}</h2>
         <p>
-        <Icon type="phone" theme="twoTone" /> + {activity.phone}
+          <Icon type="phone" theme="twoTone" /> + {activity.phone}
         </p>
         <p>{activity.description}</p>
 

@@ -21,6 +21,7 @@ const Categories = () => (
         xl: 4,
         xxl: 6
       }}
+      style={{margin: 20}}
       size="small"
       dataSource={categories}
       renderItem={category => (

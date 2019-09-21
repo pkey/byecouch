@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
-
-import { List, Card, Rate } from 'antd';
+import { List, Card, Rate, Tag } from 'antd';
 import activityList from '../data/activities.json';
 
 const Title = styled.h5``;
@@ -25,8 +24,8 @@ const RateStars = styled(Rate)`
 `;
 
 const StyledLink = styled(Link)`
-    text-decoration: none;
-`
+  text-decoration: none;
+`;
 
 const Cost = styled.p`
   padding: 0px;
@@ -34,45 +33,49 @@ const Cost = styled.p`
   font-size: 12px;
 `;
 
+const colors: any = {
+  "Šokiai": "magenta",
+  "Sportas": "green",
+  "Bedarbystė": "cyan"
+}
+
 const ActivityList = () => (
-    <List
-      size="large"
-      
-      pagination={{
-        pageSize: 20
-      }}
-      grid={{
-        gutter: 16,
-        xs: 1,
-        sm: 2,
-        md: 4,
-        lg: 3,
-        xl: 4,
-        xxl: 4
-      }}
-      dataSource={activityList}
-      renderItem={activity => (
-        <List.Item>
-         <StyledLink to={`activity/${activity.id}`}>
-         <Card
+  <List
+    size="large"
+    pagination={{
+      pageSize: 20
+    }}
+    grid={{
+      gutter: 16,
+      xs: 1,
+      sm: 2,
+      md: 4,
+      lg: 3,
+      xl: 4,
+      xxl: 4
+    }}
+    dataSource={activityList}
+    renderItem={activity => (
+      <List.Item>
+        <StyledLink to={`activity/${activity.id}`}>
+          <Card
             bordered={false}
             hoverable
             cover={<img alt="example" src={activity.image} />}
           >
             <Title>{activity.name}</Title>
-            <Description>{activity.description}</Description>
+            <Tag color={colors[activity.category]}>{activity.category}</Tag>
+            <Description>{activity.description.substr(0, 50) + "..."}</Description>
             <Cost>${activity.price}/mėn</Cost>
             <Rating>
               <RateStars disabled defaultValue={activity.rating} />
               <RatingCount>{activity.ratingCount}</RatingCount>
             </Rating>
           </Card>
-         </StyledLink>
-          
-        </List.Item>
-      )}
-    />
-
+        </StyledLink>
+      </List.Item>
+    )}
+  />
 );
 
 export default ActivityList;

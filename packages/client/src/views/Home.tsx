@@ -9,7 +9,7 @@ const Home = () => (
   <Layout>
     <Container>
     <Categories />
-      <h3>Activities</h3>
+      <h3 style={{ marginBottom: 20}}>Activities</h3>
       <ActivityList />
     </Container>
   </Layout>
