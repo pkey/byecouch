@@ -72,7 +72,8 @@ const ActivityList = ({ activities }: any) => (
                         height: "200px",
                         width: "100%",
                         borderRadius: 10,
-                        padding: 5
+                        padding: 5,
+                        objectFit: "cover"
                       }}
                     />
                   </Col>
