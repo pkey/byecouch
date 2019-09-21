@@ -18,15 +18,29 @@ const port = 4000;
 // ];
 
 //Routes
-app.get("/", (req, res) => res.send(activitiesService.getActivities()));
+// app.get("/", (req, res) => res.send(activitiesService.getActivities()));
 
-app.post("/activities", (req: Request, res: Response) => {
-  res.send(
-    locationService.getMostRelevantLocations(
-      req.body.locations,
-      activitiesService.getActivities()
-    )
-  );
+app.post("/activities", async (req: Request, res: Response) => {
+  // TODO: concurrency
+  activitiesService.getActivities((activities) => {
+    activitiesService.getSpots((spots) => {
+      for (let activity of activities) {
+        for (let spot of spots) {
+          if (activity.spot[0] == spot.id) {
+            activity.spot = spot
+          }
+        }
+      }
+
+      res.send(
+        locationService.getMostRelevantLocations(
+          req.body.locations,
+          activities
+        )
+      );
+    })
+
+  })
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

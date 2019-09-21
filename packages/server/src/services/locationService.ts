@@ -8,10 +8,7 @@ class LocationService {
     activities: Activity[]
   ): any[] {
     console.log("yo");
-
-    console.log(locations);
-
-    console.log(activities);
+    console.log(activities)
 
     //TODO: Change to Activity[]
     switch (locations.length) {
