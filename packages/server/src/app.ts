@@ -45,4 +45,42 @@ app.get("/categories", async (_, res) => {
   res.send(categories);
 });
 
+app.get('/activity', async (req: Request, res: Response) => {
+    const activityId = req.query.id;
+  
+    try {
+      const activities = await activitiesService.getActivity(activityId);
+      if (activities.length == 0) {
+        res.status(404).send("Item not found");
+      } else if (activities.length > 1) {
+        res.status(500).send("Multiple items found");
+      }
+      const activity = activities[0];
+      const spots = await activitiesService.getSpots();
+  
+      const merged = []
+  
+      activity.events.forEach(eventId => {
+        var eventPromise = activitiesService.getEvent(eventId);
+        eventPromise.then(event => {
+          console.log(event);
+        });
+      });
+  
+      spots.forEach(spot => {
+        if ( activity.spot[0] === spot.id) {
+          merged.push({
+            ...activity,
+            spot
+          })
+        }
+      })
+      res.send(merged);
+    } catch (err) {
+      console.log(err);
+      res.send({ err: err.toString() });
+    }
+  
+  });
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

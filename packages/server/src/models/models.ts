@@ -32,6 +32,8 @@ export interface ActivityCategory {
 export interface ActivityEvent {
   start: string;
   end: string;
+  busy: boolean;
+  day: string;
 }
 
 export interface Location {

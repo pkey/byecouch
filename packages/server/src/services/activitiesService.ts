@@ -1,5 +1,5 @@
 import Airtable from "airtable";
-import { Activity, Spot } from "../models/models";
+import { Activity, ActivityEvent, Spot } from "../models/models";
 
 class ActivitiesService {
   private airtable: Airtable;
@@ -99,6 +99,61 @@ class ActivitiesService {
       return err;
     }
   }
+
+  async getEvent(id) {
+        try {
+          let event;
+          await this.activitiesBase('Events')
+            .find(id).then((record: any) => {
+                let fields: any = record.fields;
+                let activity: ActivityEvent = {
+                  start: fields.From,
+                  end: fields.To,
+                  busy: fields.Busy,
+                  day: fields.Day
+                };
+                event = activity;
+                
+            });
+          return event;
+        } catch (err) {
+          return err;
+        }
+      }
+
+      async getActivity(id) {
+        try {
+          const activities: Activity[] = [];
+    
+          await this.activitiesBase('Activities')
+            .select({ view: 'Grid view', filterByFormula: 'ID = ' + id })
+            .eachPage((records, fetchNextPage) => {
+              records.forEach(({ fields }: any) => {
+                activities.push({
+                  id: fields.Id,
+                  photo: fields.Photo,
+                  rating: fields.Rating,
+                  ratingCount: fields.RatingCount,
+                  price: fields.Price,
+                  maxPeople: fields.MaxPeople,
+                  link: fields.Link,
+                  phoneNumber: fields.PhoneNumber,
+                  category: fields.Category,
+                  email: fields.Email,
+                  events: fields.Events,
+                  name: fields.Name,
+                  spot: fields.Spot
+                });
+              });
+    
+              fetchNextPage();
+            });
+    
+          return activities;
+        } catch (err) {
+          return err;
+        }
+      }
 }
 
 export default new ActivitiesService();
