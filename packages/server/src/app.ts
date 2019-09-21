@@ -8,11 +8,11 @@ const port = 4000;
 //Mock Data
 const activities: Activity[] = require("./data/activities.json");
 const locationsMock: Location[] = [
-  { name: "Work", lattitude: 54.6974182, longtitude: 25.2786977 }
+  { name: "Work", latitude: 54.6974182, longitude: 25.2786977 }
   //   {
   //     name: "Antakalnio gimnazija",
-  //     lattitude: 54.7008955,
-  //     longtitude: 25.3105727
+  //     latitude: 54.7008955,
+  //     longitude: 25.3105727
   //   }
 ];
 
@@ -20,8 +20,8 @@ const locationsMock: Location[] = [
 interface Spot {
   name: string;
   address: string;
-  lattitude: number;
-  longtitude: number;
+  latitude: number;
+  longitude: number;
 }
 interface Activity {
   name: string;
@@ -31,8 +31,8 @@ interface Activity {
 
 interface Location {
   name: string;
-  lattitude: number;
-  longtitude: number;
+  latitude: number;
+  longitude: number;
 }
 interface closestActivitiesReq extends Request {
   body: {
@@ -54,8 +54,8 @@ app.get("/activities", (req: closestActivitiesReq, res: Response) => {
     }
     case 1: {
       const point: GeolibInputCoordinates = {
-        lng: locations[0].longtitude,
-        lat: locations[0].lattitude
+        lng: locations[0].longitude,
+        lat: locations[0].latitude
       };
       //TODO: Will calcualte everytime - could be cached or sth.
       //TODO: A lot of mapping an remapping
@@ -64,8 +64,8 @@ app.get("/activities", (req: closestActivitiesReq, res: Response) => {
         activities.map(a => {
           return {
             name: a.spot.name,
-            lng: a.spot.longtitude,
-            lat: a.spot.lattitude
+            lng: a.spot.longitude,
+            lat: a.spot.latitude
           };
         })
       );
