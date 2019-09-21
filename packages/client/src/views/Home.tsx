@@ -9,10 +9,8 @@ const Home = () => (
   <Layout>
     <Container>
     <Categories />
-
       <h3>Activities</h3>
       <List />
-
     </Container>
   </Layout>
 );
