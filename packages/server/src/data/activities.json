@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Swimming",
+    "description": "Swimming this is",
+    "spot": {
+      "name": "LVJC",
+      "address": "Konstiticujos pr. 25",
+      "latitude": 54.6995102,
+      "longitude": 25.2671074
+    }
+  },
+  {
+    "name": "Dancing",
+    "description": "Dancing this is",
+    "spot": {
+      "name": "Sokiu akademija",
+      "address": "Konstitucijos pr. 11",
+      "latitude": 54.69673470000001,
+      "longitude": 25.2752488
+    }
+  },
+  {
+    "name": "Coding",
+    "description": "Coding this is",
+    "spot": {
+      "name": "Code Academy",
+      "address": "Antakalnio g. 17",
+      "latitude": 54.6977727,
+      "longitude": 25.3104065
+    }
+  }
+]
