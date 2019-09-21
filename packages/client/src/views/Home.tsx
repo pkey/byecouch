@@ -50,10 +50,10 @@ class Home extends Component {
             }}
           >
             <Container>
-              <Filters />
+              {/* <Filters /> */}
 
               {isLoading ? (
-                <div style={{ textAlign: 'center' }}>
+                <div style={{ textAlign: 'center', margin: 20}}>
                   <Spin tip="Kraunasi..." />
                 </div>
               ) : (
@@ -61,7 +61,7 @@ class Home extends Component {
                   <Categories categories={categories} />
                   <h3 style={{ marginBottom: 10 }}>
                     Veiklos
-                    <span style={{ fontSize: 14 }}>({activities.length})</span>
+                    <span style={{ fontSize: 14 }}>{" "}({activities.length})</span>
                   </h3>
                   <ActivityList activities={activities} categories={categories} />
 
