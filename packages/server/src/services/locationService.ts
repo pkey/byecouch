@@ -4,10 +4,11 @@ import { Activity, Location } from "../models/models";
 import { Z_FILTERED } from "zlib";
 
 class LocationService {
-  getMostRelevantLocations(
+
+  async getMostRelevantLocations(
     locations: Location[],
     activities: Activity[]
-  ): any[] {
+  ) {
     const radius = 5000;
     // console.log("yo");
     // console.log(activities)
@@ -18,6 +19,8 @@ class LocationService {
         return activities; //Send all of np locations provided
       }
       case 1: {
+
+        console.log(locations)
         const point: GeolibInputCoordinates = {
           lng: locations[0].longitude,
           lat: locations[0].latitude
@@ -29,9 +32,9 @@ class LocationService {
           point,
           activities.map(a => {
             return {
-              name: a.spot.name,
-              lng: a.spot.longitude,
-              lat: a.spot.latitude,
+              name: a.spot.name || "",
+              lng: a.spot.longitude || "",
+              lat: a.spot.latitude || "",
               activity: a
             };
           })
