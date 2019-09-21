@@ -21,7 +21,6 @@ const port = process.env.PORT || 4000;
 app.get('/', (req, res) => res.send([]));
 
 app.post('/activities', async (req: Request, res: Response) => {
-  const { locations } = req.body;
 
   try {
     const activities = await activitiesService.getActivities();
@@ -44,7 +43,7 @@ app.post('/activities', async (req: Request, res: Response) => {
     })
 
     const recommendations = await locationService.getMostRelevantLocations(
-      locations,
+      req.body.locations,
       merged
     );
     res.send(recommendations);
