@@ -12,7 +12,7 @@ const WhiteHeader = styled(Header)`
 const Layout = ({ children }: any) => (
   <PageLayout>
     <WhiteHeader>👋 🛋ByeCouch </WhiteHeader>
-    <Content style={{ padding: 20 }}>{children}</Content>
+    <Content>{children}</Content>
   </PageLayout>
 );
 

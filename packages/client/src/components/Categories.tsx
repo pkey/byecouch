@@ -1,13 +1,33 @@
 import React from 'react';
 import styled from 'styled-components'
-import { List, Card } from 'antd';
+import { List, Card, Tag} from 'antd';
 
 import categories from '../data/categories.json';
 
-const Category = styled(Card)`
-    border-radius: 10px;
-    // color: #fff;
+const Category:any = styled(Tag)`
+    // background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    // border: 1px solid rgb(220, 224, 224);
+    font-size: 14px;
+line-height: 1.43;
+    opacity: 0.6;
+    :hover {
+      opacity: 1;
+      cursor: pointer;
+    }
 `
+
+const types: any = {
+  "Rankdarbiai": "red",
+  "Menai": "cyan",
+  "Sportas": "gold",
+  "Muzika": "magenta",
+  "Tech": "green",
+  "Kalbos":"purple"
+}
 
 const Categories = () => (
   <>
@@ -26,7 +46,7 @@ const Categories = () => (
       dataSource={categories}
       renderItem={category => (
         <List.Item >
-          <Category hoverable>
+          <Category color={types[category.name]}>
             <span>{category.name}</span>
           </Category>
         </List.Item>
