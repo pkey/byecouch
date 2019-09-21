@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/airtable": "^0.5.6",
     "@types/express": "^4.17.1",
     "@types/node-geocoder": "^3.24.0",
+    "airtable": "^0.7.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "geolib": "^3.0.4",

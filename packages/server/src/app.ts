@@ -1,11 +1,13 @@
+require("dotenv").config();
 import express, { Request, Response } from "express";
 import * as geolib from "geolib";
 import { GeolibInputCoordinates } from "geolib/es/types";
-require("dotenv").config();
+import ActivitiesService from "./data/activitiesService";
 const app = express();
 const port = 4000;
 
-//Mock Data
+//Mock Data/
+//TODO: Get actitivites from AirTable
 const activities: Activity[] = require("./data/activities.json");
 const locationsMock: Location[] = [
   { name: "Work", latitude: 54.6974182, longitude: 25.2786977 }
@@ -15,6 +17,8 @@ const locationsMock: Location[] = [
   //     longitude: 25.3105727
   //   }
 ];
+
+ActivitiesService.getActivities();
 
 //Interfaces
 interface Spot {
