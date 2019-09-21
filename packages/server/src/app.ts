@@ -27,14 +27,14 @@ app.post('/activities', async (req: Request, res: Response) => {
     const activities = await activitiesService.getActivities();
     const spots = await activitiesService.getSpots();
 
-    console.log(activities.length)
-    console.log(spots.length)
-
     const merged = []
-    activities.forEach(activity => {
+    const activitiesWithSpots = activities.filter(activity => {
+      if (activity && activity.spot && activity.spot.length != 0) return activity
+    })
+
+    activitiesWithSpots.forEach(activity => {
       spots.forEach(spot => {
-        if (activity && activity.spot && activity.spot.length != 0 &&   activity.spot[0] === spot.id) {
-          console.log(activity, spot)
+        if ( activity.spot[0] === spot.id) {
           merged.push({
             ...activity,
             spot
@@ -43,7 +43,6 @@ app.post('/activities', async (req: Request, res: Response) => {
       }) 
     })
 
-    console.log(merged)
     const recommendations = await locationService.getMostRelevantLocations(
       locations,
       merged
@@ -54,21 +53,6 @@ app.post('/activities', async (req: Request, res: Response) => {
     res.send({ err });
   }
 
-  // activitiesService.getActivities((activities: any) => {
-  //   activitiesService.getSpots((spots: any) => {
-  //     for (let activity of activities) {
-  //       for (let spot of spots) {
-  //         if (activity.spot[0] == spot.id) {
-  //           activity.spot = spot;
-  //         }
-  //       }
-  //     }
-
-  //     res.send(
-  //       locationService.getMostRelevantLocations(req.body.locations, activities)
-  //     );
-  //   });
-  // });
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
