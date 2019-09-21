@@ -1,8 +1,8 @@
-import { Card, List, Rate, Spin, Tag } from 'antd';
-import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Card, List, Rate, Tag } from "antd";
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Title = styled.h5``;
 const Description = styled.p``;
@@ -34,9 +34,9 @@ const Cost = styled.p`
 `;
 
 const colors: any = {
-  Šokiai: 'magenta',
-  Sportas: 'green',
-  Bedarbystė: 'cyan'
+  Šokiai: "magenta",
+  Sportas: "green",
+  Bedarbystė: "cyan"
 };
 
 const ActivityList = ({ activities, categories }: any) => (
@@ -51,7 +51,7 @@ const ActivityList = ({ activities, categories }: any) => (
         <List.Item style={{ padding: 20 }}>
           <Card
             hoverable
-            style={{ height: 200, width: '100%' }}
+            style={{ height: 200, width: "100%" }}
             bodyStyle={{ padding: 0 }}
           >
             <StyledLink to={`activity/${activity.id}`}>
@@ -64,29 +64,40 @@ const ActivityList = ({ activities, categories }: any) => (
                         : `https://picsum.photos/seed/${activity.id}/200/300`
                     }
                     style={{
-                      height: '200px',
-                      width: '100%',
+                      height: "200px",
+                      width: "100%",
                       borderRadius: 10,
                       padding: 5,
-                      objectFit: 'cover'
+                      objectFit: "cover"
                     }}
                   />
                 </Col>
-                <Col xs={0} sm={6} style={{ margin: '15px 20px', padding: 0 }}>
+                <Col xs={0} sm={6} style={{ margin: "15px 20px", padding: 0 }}>
                   <span style={{ fontSize: 12 }}>
                     {activity.spot.name} - {activity.spot.address}
                   </span>
                   <Title>{activity.name}</Title>
                   <Description>{activity.description}</Description>
                   <Rating>
-                    <RateStars disabled defaultValue={activity.rating !== 0 ? activity.rating : Math.round(Math.random() * 10 - 5) + 1 } />
-                    <RatingCount>{activity.ratingCount !== 0 ? activity.ratingCount : Math.round(Math.random() * 100) + 10 }</RatingCount>
+                    <RateStars
+                      disabled
+                      defaultValue={
+                        activity.rating !== 0
+                          ? activity.rating
+                          : Math.round(Math.random() * 10 - 5) + 1
+                      }
+                    />
+                    <RatingCount>
+                      {activity.ratingCount !== 0
+                        ? activity.ratingCount
+                        : Math.round(Math.random() * 100) + 10}
+                    </RatingCount>
                   </Rating>
                   <span style={{ marginRight: 20 }}>
                     {activity.price} $/mėn
                   </span>
-                  <Tag color={categories[activity.type]}>
-                    {activity.category}
+                  <Tag color={activity.category.color}>
+                    {activity.category.name}
                   </Tag>
                 </Col>
               </Row>

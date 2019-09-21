@@ -16,14 +16,15 @@ export interface Activity {
   maxPeople: number;
   link: string;
   phoneNumber: string;
-  type: ActivityType;
+  category: ActivityCategory;
   events: ActivityEvent[];
   email: string;
   spot: Spot;
   name: string;
 }
 
-export interface ActivityType {
+export interface ActivityCategory {
+  id: number;
   name: string;
   color: string;
 }

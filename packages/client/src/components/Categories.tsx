@@ -18,15 +18,6 @@ const Category: any = styled(Tag)`
   }
 `;
 
-const types: any = {
-  Rankdarbiai: "red",
-  Menai: "cyan",
-  Sportas: "gold",
-  Muzika: "magenta",
-  Tech: "green",
-  Kalbos: "purple"
-};
-
 const Categories = ({ categories }: any) => (
   <>
     <List
