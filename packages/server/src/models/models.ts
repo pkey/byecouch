@@ -9,6 +9,11 @@ export interface Spot {
 
 export interface Activity {
   id: number;
+  photo: string;
+  rating: number;
+  ratingCount: number;
+  price: number;
+  maxPeople: number;
   link: string;
   phoneNumber: string;
   type: ActivityType;

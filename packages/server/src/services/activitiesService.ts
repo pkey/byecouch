@@ -19,10 +19,15 @@ class ActivitiesService {
           records.forEach(({ fields }: any) => {
             activities.push({
               id: fields.Id,
+              photo: fields.Photo,
+              rating: fields.Rating,
+              ratingCount: fields.RatingCount,
+              price: fields.Price,
+              maxPeople: fields.MaxPeople,
               link: fields.Link,
               phoneNumber: fields.PhoneNumber,
               email: fields.Email,
-              type: null,
+              type: fields.Type,
               events: [],
               name: fields.Name,
               spot: fields.Spot
