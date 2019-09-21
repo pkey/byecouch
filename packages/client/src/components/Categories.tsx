@@ -1,8 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { List, Card, Tag } from 'antd';
-
-import categories from '../data/categories.json';
+import { List, Tag } from "antd";
+import React from "react";
+import styled from "styled-components";
 
 const Category: any = styled(Tag)`
   // background-color: #fff;
@@ -21,15 +19,15 @@ const Category: any = styled(Tag)`
 `;
 
 const types: any = {
-  Rankdarbiai: 'red',
-  Menai: 'cyan',
-  Sportas: 'gold',
-  Muzika: 'magenta',
-  Tech: 'green',
-  Kalbos: 'purple'
+  Rankdarbiai: "red",
+  Menai: "cyan",
+  Sportas: "gold",
+  Muzika: "magenta",
+  Tech: "green",
+  Kalbos: "purple"
 };
 
-const Categories = () => (
+const Categories = ({ categories }: any) => (
   <>
     <List
       grid={{
@@ -44,9 +42,9 @@ const Categories = () => (
       style={{ margin: 20 }}
       size="small"
       dataSource={categories}
-      renderItem={category => (
+      renderItem={(category: any) => (
         <List.Item>
-          <Category color={types[category.name]}>
+          <Category color={category.color}>
             <span>{category.name}</span>
           </Category>
         </List.Item>

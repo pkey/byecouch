@@ -25,6 +25,7 @@ export interface Activity {
 
 export interface ActivityType {
   name: string;
+  color: string;
 }
 
 export interface ActivityEvent {

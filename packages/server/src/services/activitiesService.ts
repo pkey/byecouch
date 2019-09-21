@@ -68,6 +68,36 @@ class ActivitiesService {
       return err;
     }
   }
+
+  async getTypes() {
+    try {
+      const types = [];
+      await this.activitiesBase("Categories")
+        .select({
+          // Selecting the first 3 records in Grid view:
+          view: "Grid view"
+        })
+        .eachPage((records, fetchNextPage) => {
+          // This function (`page`) will get called for each page of records.
+
+          records.forEach(({ fields }: any) => {
+            types.push({
+              name: fields.Name,
+              color: fields.Color
+            });
+          });
+
+          // To fetch the next page of records, call `fetchNextPage`.
+          // If there are more records, `page` will get called again.
+          // If there are no more records, `done` will get called.
+          fetchNextPage();
+        });
+
+      return types;
+    } catch (err) {
+      return err;
+    }
+  }
 }
 
 export default new ActivitiesService();

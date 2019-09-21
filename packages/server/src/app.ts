@@ -57,4 +57,9 @@ app.post("/activities", async (req: Request, res: Response) => {
   }
 });
 
+app.get("/types", async (_, res) => {
+  const types = await activitiesService.getTypes();
+  res.send(types);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
