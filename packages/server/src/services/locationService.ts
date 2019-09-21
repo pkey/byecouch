@@ -13,6 +13,8 @@ class LocationService {
     // console.log("yo");
     // console.log(activities)
 
+    if (!locations) return activities
+
     //TODO: Change to Activity[]
     switch (locations.length) {
       case 0: {
