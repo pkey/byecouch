@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 
-import { Card, Comment, Avatar, Rate, Statistic, Col, Row } from 'antd';
+import { Card, Comment, Avatar, Rate, Statistic, Col, Row, Icon } from 'antd';
 
 import activities from '../data/activities.json';
 import { Container } from 'react-bootstrap';
@@ -48,6 +48,9 @@ const Activity = () => (
         <RateStars disabled defaultValue={activity.rating} />
 
         <h2 style={{ margin: '10px 0' }}>{activity.name}</h2>
+        <p>
+        <Icon type="phone" theme="twoTone" /> + {activity.phone}
+        </p>
         <p>{activity.description}</p>
 
         <Row gutter={16}>
@@ -61,12 +64,10 @@ const Activity = () => (
 
         <hr />
 
-<div style={{marginTop: 40}}>
-<h6>Tvarkaraštis </h6>
-        <DayList />
-</div>
-
-
+        <div style={{ marginTop: 40 }}>
+          <h6>Tvarkaraštis </h6>
+          <DayList />
+        </div>
 
         <h4>Reviews</h4>
         <Comments />

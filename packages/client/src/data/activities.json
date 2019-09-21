@@ -7,6 +7,7 @@
         "rating": 4,
         "ratingCount": 461,
         "participants": 20,
+        "phone": 3700000,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "LVJC",
@@ -21,6 +22,7 @@
         "description": "Dancing this is",
         "price": 10,
         "rating": 3,
+        "phone": 3700000,
         "ratingCount": 120,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
@@ -36,6 +38,7 @@
         "description": "Coding this is",
         "price": 30,
         "rating": 5,
+        "phone": 3700000,
         "ratingCount": 80,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
@@ -51,6 +54,7 @@
         "description": "Swimming this is",
         "price": 20,
         "rating": 1,
+        "phone": 3700000,
         "ratingCount": 20,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
@@ -67,6 +71,7 @@
         "description": "Dancing this is",
         "price": "Free",
         "rating": 5,
+        "phone": 3700000,
         "ratingCount": 1204,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
@@ -82,7 +87,9 @@
         "description": "Coding this is",
         "price": "Free",
         "rating": 4,
-        "ratingCount": 210,"participants": 20,
+        "ratingCount": 210,
+        "participants": 20,
+        "phone": 3700000,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Code Academy",
