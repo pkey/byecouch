@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { List, Card, Rate, Tag } from 'antd';
+import { List, Card, Rate, Tag, Row, Col } from 'antd';
+
 import activityList from '../data/activities.json';
+import Meta from "antd/es/card/Meta";
+import ActivityMap from "../views/Map";
 
 const Title = styled.h5``;
 const Description = styled.p``;
@@ -40,40 +43,37 @@ const colors: any = {
 }
 
 const ActivityList = () => (
-  <List
-    size="large"
-    pagination={{
-      pageSize: 20
-    }}
-    grid={{
-      gutter: 16,
-      xs: 1,
-      sm: 2,
-      md: 4,
-      lg: 3,
-      xl: 4,
-      xxl: 4
-    }}
-    dataSource={activityList}
-    renderItem={activity => (
-      <List.Item>
+  <List    size="large"
+      pagination={{
+        pageSize: 20
+      }}
+      dataSource={activityList}
+      renderItem={activity => (
+        <List.Item>
         <StyledLink to={`activity/${activity.id}`}>
           <Card
             bordered={false}
             hoverable
-            cover={<img alt="example" src={activity.image} />}
           >
-            <Title>{activity.name}</Title>
-            <Tag color={colors[activity.category]}>{activity.category}</Tag>
+             <Row gutter={24}>
+                 <Col span={12}>
+                     <img style={{height: '100%', width: '100%'}} alt="example" src={activity.image} />
+                 </Col>
+                 <Col span={12}>
+                     <Title>{activity.name}</Title>
+                     <Tag color={colors[activity.category]}>{activity.category}</Tag>
             <Description>{activity.description.substr(0, 50) + "..."}</Description>
-            <Cost>${activity.price}/mėn</Cost>
-            <Rating>
-              <RateStars disabled defaultValue={activity.rating} />
-              <RatingCount>{activity.ratingCount}</RatingCount>
-            </Rating>
+                     <Cost>${activity.price}/mėn</Cost>
+                     <Rating>
+                         <RateStars disabled defaultValue={activity.rating} />
+                         <RatingCount>{activity.ratingCount}</RatingCount>
+                     </Rating>
+                 </Col>
+             </Row>
           </Card>
-        </StyledLink>
-      </List.Item>
+         </StyledLink>
+
+        </List.Item>
     )}
   />
 );
