@@ -1,7 +1,11 @@
 {
   "name": "root",
   "private": true,
-  "devDependencies": {
+  "scripts": {
+    "api": "cd ./packages/server && npm run start",
+    "postinstall": "lerna bootstrap"
+  },
+  "dependencies": {
     "lerna": "^3.16.4"
   }
 }

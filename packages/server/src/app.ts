@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 import activitiesService from "./services/activitiesService";
 import locationService from "./services/locationService";
 const app = express().use(body_parser.json());
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //Mock Data/
 //TODO: Get actitivites from AirTable
