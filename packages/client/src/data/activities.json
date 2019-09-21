@@ -1,10 +1,14 @@
 [
     {
+        "id": 1,
         "name": "Swimming",
         "description": "Swimming this is",
         "price": 90,
         "rating": 4,
         "ratingCount": 461,
+        "participants": 20,
+        "phone": 3700000,
+        "category": "Šokiai",
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "LVJC",
@@ -14,11 +18,14 @@
         }
     },
     {
+        "id": 2,
         "name": "Dancing",
         "description": "Dancing this is",
         "price": 10,
         "rating": 3,
-        "ratingCount": 120,
+        "phone": 3700000,
+        "category": "Šokiai",
+        "ratingCount": 120,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Sokiu akademija",
@@ -28,11 +35,14 @@
         }
     },
     {
+        "id": 3,
         "name": "Coding",
         "description": "Coding this is",
         "price": 30,
         "rating": 5,
-        "ratingCount": 80,
+        "phone": 3700000,
+        "category": "Sportas",
+        "ratingCount": 80,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Code Academy",
@@ -42,11 +52,14 @@
         }
     },
     {
+        "id": 4,
         "name": "Swimming",
         "description": "Swimming this is",
         "price": 20,
         "rating": 1,
-        "ratingCount": 20,
+        "phone": 3700000,
+        "category": "Sportas",
+        "ratingCount": 20,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "LVJC",
@@ -56,11 +69,15 @@
         }
     },
     {
+
+        "id": 5,
         "name": "Dancing",
         "description": "Dancing this is",
         "price": "Free",
         "rating": 5,
-        "ratingCount": 1204,
+        "phone": 3700000,
+        "category": "Bedarbystė",
+        "ratingCount": 1204,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Sokiu akademija",
@@ -70,11 +87,15 @@
         }
     },
     {
+        "id": 6,
         "name": "Coding",
         "description": "Coding this is",
         "price": "Free",
         "rating": 4,
         "ratingCount": 210,
+        "participants": 20,
+        "phone": 3700000,
+        "category": "Bedarbystė",
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Code Academy",
