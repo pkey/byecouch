@@ -1,17 +1,8 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
 
 import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent: any = ({ text }: any) => <div>{text}</div>;
-
-const OnlyMobile = styled.div`
-@media screen and (max-device-width: 760px){
-    display: none;
-    height: calc(100vh - 68px);
-    width: 100vh;
-  }
-`
 
 class ActivityMap extends Component {
     static defaultProps: any = {
@@ -25,7 +16,7 @@ class ActivityMap extends Component {
     render() {
         return (
             // Important! Always set the container height explicitly
-            <OnlyMobile style={{ }}>
+            <div style={{ height: "calc(100vh - 68px)", width: '100vh'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyDzPEtqIe-1ArlBZRdmFQfGEKZr1f6HwrQ' }}
                     defaultCenter={{lat: 54.687157, lng: 25.279652}}
@@ -37,7 +28,7 @@ class ActivityMap extends Component {
                         text="My Marker"
                     />
                 </GoogleMapReact>
-            </OnlyMobile>
+            </div>
         );
     }
 }
