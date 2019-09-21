@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 
 import { List as ActivityList, Card, Rate } from 'antd';
@@ -30,7 +31,6 @@ const Cost = styled.p`
 `;
 
 const List = () => (
-
     <ActivityList
       size="large"
       pagination={{
@@ -48,7 +48,8 @@ const List = () => (
       dataSource={activityList}
       renderItem={activity => (
         <ActivityList.Item>
-          <Card
+         <Link to={`activity/${activity.id}`}>
+         <Card
             bordered={false}
             hoverable
             cover={<img alt="example" src={activity.image} />}
@@ -61,6 +62,8 @@ const List = () => (
               <RatingCount>{activity.ratingCount}</RatingCount>
             </Rating>
           </Card>
+         </Link>
+          
         </ActivityList.Item>
       )}
     />
