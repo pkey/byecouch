@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 import { Container } from 'react-bootstrap';
@@ -16,38 +16,42 @@ const OnlyMobile = styled(Col)`
   }
 `;
 
-const Home = () => (
-  <Layout>
-      <Row>
-        <Col
-          sm={12}
-          md={6}
-          xl={6}
-          style={{
-            height: 'calc(100vh - 100px)',
-            overflowY: 'scroll',
-            scrollbarWidth: 'none',
-            overflowX: 'hidden'
+class Home extends Component {
+    render()
+    {
+        return (
+            <Layout>
+                <Row>
+                    <Col
+                        sm={12}
+                        md={6}
+                        xl={6}
+                        style={{
+                            height: 'calc(100vh - 100px)',
+                            overflowY: 'scroll',
+                            scrollbarWidth: 'none',
+                            overflowX: 'hidden'
 
-          }}
-        >
-          <Container>
-            <Filters />
-            <Categories />
-            <h3 style={{ marginBottom: 10 }}>
-              Veiklos <span style={{ fontSize: 14 }}>(51)</span>
-            </h3>
-          </Container>
+                        }}
+                    >
+                        <Container>
+                            <Filters/>
+                            <Categories/>
+                            <h3 style={{marginBottom: 10}}>
+                                Veiklos <span style={{fontSize: 14}}>(51)</span>
+                            </h3>
+                        </Container>
 
-          <ActivityList />
-        </Col>
+                        <ActivityList/>
+                    </Col>
 
-        <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-          <ActivityMap />
-        </OnlyMobile>
+                    <OnlyMobile xs={0} sm={0} md={0} xl={6}>
+                        <ActivityMap/>
+                    </OnlyMobile>
 
-      </Row>
-  </Layout>
-);
-
+                </Row>
+            </Layout>
+        )
+    }
+}
 export default Home;

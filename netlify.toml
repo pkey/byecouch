@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/*"
+  to = "https://byecouch.herokuapp.com/:splat"
+  status = 200
+  force = true 
