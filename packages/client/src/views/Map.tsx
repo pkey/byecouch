@@ -23,7 +23,7 @@ class ActivityMap extends Component<MapProps> {
         const displayedMarkers = [];
 
         for(const value of this.props.markers? this.props.markers : []) {
-            displayedMarkers.push(<Marker key={value.id} lat={value.lat} lng={value.lng} name={value.activityTitle}/>);
+            displayedMarkers.push(<Marker id={value.id} key={value.id} lat={value.lat} lng={value.lng} name={value.activityTitle}/>);
         }
 
         return (
