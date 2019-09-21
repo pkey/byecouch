@@ -1,5 +1,5 @@
 export interface Spot {
-  id: string,
+  id: string;
   name: string;
   address: string;
   latitude: number;
@@ -8,6 +8,7 @@ export interface Spot {
 }
 
 export interface Activity {
+  id: number;
   link: string;
   phoneNumber: string;
   type: ActivityType;
@@ -18,17 +19,16 @@ export interface Activity {
 }
 
 export interface ActivityType {
-  name: string
+  name: string;
 }
 
 export interface ActivityEvent {
-  start: string
-  end: string
+  start: string;
+  end: string;
 }
 
 export interface Location {
-  name: string,
-  latitude: string,
-  longitude: string
+  name: string;
+  latitude: string;
+  longitude: string;
 }
-
