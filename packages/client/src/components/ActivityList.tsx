@@ -41,13 +41,13 @@ const colors: any = {
 };
 
 const ActivityList = () => {
-  const [activities, setActvity] = useState(activityList);
+  const [activities, setActvities] = useState(activityList);
 
   //TODO: set activities
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.post("/api/activities", {});
-      console.log(result);
+      setActvities(result.data);
     };
     fetchData();
   }, []);
@@ -58,48 +58,56 @@ const ActivityList = () => {
         pageSize: 10
       }}
       dataSource={activities}
-      renderItem={activity => (
-        <List.Item style={{ padding: 20 }}>
-          <Card
-            hoverable
-            style={{ height: 200, width: "100%" }}
-            bodyStyle={{ padding: 0 }}
-          >
-            <StyledLink to={`activity/${activity.id}`}>
-              <Row>
-                <Col xs={0} sm={4} style={{ padding: 0 }}>
-                  <img
-                    src={activity.image}
-                    style={{
-                      height: "200px",
-                      width: "100%",
-                      borderRadius: 10,
-                      padding: 5
-                    }}
-                  />
-                </Col>
-                <Col xs={0} sm={6} style={{ margin: "15px 20px", padding: 0 }}>
-                  <span style={{ fontSize: 12 }}>
-                    {activity.spot.name} - {activity.spot.address}
-                  </span>
-                  <Title>{activity.name}</Title>
-                  <Description>{activity.description}</Description>
-                  <Rating>
-                    <RateStars disabled defaultValue={activity.rating} />
-                    <RatingCount>{activity.ratingCount}</RatingCount>
-                  </Rating>
-                  <span style={{ marginRight: 20 }}>
-                    {activity.price} $/mėn
-                  </span>
-                  <Tag color={colors[activity.category]}>
-                    {activity.category}
-                  </Tag>
-                </Col>
-              </Row>
-            </StyledLink>
-          </Card>
-        </List.Item>
-      )}
+      renderItem={activity =>
+        activity ? (
+          <List.Item style={{ padding: 20 }}>
+            <Card
+              hoverable
+              style={{ height: 200, width: "100%" }}
+              bodyStyle={{ padding: 0 }}
+            >
+              <StyledLink to={`activity/${activity.id}`}>
+                <Row>
+                  <Col xs={0} sm={4} style={{ padding: 0 }}>
+                    <img
+                      src={activity.image}
+                      style={{
+                        height: "200px",
+                        width: "100%",
+                        borderRadius: 10,
+                        padding: 5
+                      }}
+                    />
+                  </Col>
+                  <Col
+                    xs={0}
+                    sm={6}
+                    style={{ margin: "15px 20px", padding: 0 }}
+                  >
+                    <span style={{ fontSize: 12 }}>
+                      {activity.spot.name} - {activity.spot.address}
+                    </span>
+                    <Title>{activity.name}</Title>
+                    <Description>{activity.description}</Description>
+                    <Rating>
+                      <RateStars disabled defaultValue={activity.rating} />
+                      <RatingCount>{activity.ratingCount}</RatingCount>
+                    </Rating>
+                    <span style={{ marginRight: 20 }}>
+                      {activity.price} $/mėn
+                    </span>
+                    <Tag color={colors[activity.category]}>
+                      {activity.category}
+                    </Tag>
+                  </Col>
+                </Row>
+              </StyledLink>
+            </Card>
+          </List.Item>
+        ) : (
+          {}
+        )
+      }
     />
   );
 };
