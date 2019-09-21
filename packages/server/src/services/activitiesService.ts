@@ -1,23 +1,24 @@
-import Airtable from 'airtable';
-import { Activity, Spot, ActivityEvent, ActivityType } from '../models/models';
+import Airtable from "airtable";
+import { Activity, Spot } from "../models/models";
 
 class ActivitiesService {
   private airtable: Airtable;
   private activitiesBase: Airtable.Base;
   constructor() {
     this.airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY });
-    this.activitiesBase = this.airtable.base('app0v46hnuh0dHIob');
+    this.activitiesBase = this.airtable.base("app0v46hnuh0dHIob");
   }
 
   async getActivities() {
     try {
       const activities: Activity[] = [];
 
-      await this.activitiesBase('Activities')
-        .select({ view: 'Grid view' })
+      await this.activitiesBase("Activities")
+        .select({ view: "Grid view" })
         .eachPage((records, fetchNextPage) => {
           records.forEach(({ fields }: any) => {
             activities.push({
+              id: fields.Id,
               link: fields.Link,
               phoneNumber: fields.PhoneNumber,
               email: fields.Email,
@@ -41,8 +42,8 @@ class ActivitiesService {
     try {
       const spots: Spot[] = [];
 
-      await this.activitiesBase('Spots')
-        .select({ view: 'Grid view' })
+      await this.activitiesBase("Spots")
+        .select({ view: "Grid view" })
         .eachPage((records, fetchNextPage) => {
           records.forEach(({ id, fields }: any) => {
             spots.push({

@@ -64,7 +64,7 @@ const ActivityList = ({ activities }: any) => (
                 <Row>
                   <Col xs={0} sm={4} style={{ padding: 0 }}>
                     <img
-                      src={activity.image}
+                      src={`https://picsum.photos/seed/${activity.id}/200/300`}
                       style={{
                         height: '200px',
                         width: '100%',
