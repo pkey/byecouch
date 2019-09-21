@@ -1,30 +1,47 @@
 import React from 'react';
+import styled from 'styled-components';
 import Layout from '../components/Layout';
 import { Container } from 'react-bootstrap';
 
 import ActivityList from '../components/ActivityList';
 import Categories from '../components/Categories';
-import { Col, Row } from 'antd';
+import { Row, Col } from 'react-bootstrap';
 import ActivityMap from './Map';
+
+const OnlyMobile = styled(Col)`
+  @media screen and (max-device-width: 760px) {
+    display: none;
+  }
+`;
 
 const Home = () => (
   <Layout>
     <div style={{ height: 'calc(100vh - 100px)' }}>
-      <Row gutter={24}>
-        <Col span={12}>
+      <Row>
+        <Col
+          sm={12}
+          md={6}
+          xl={6}
+          style={{
+            height: 'calc(100vh - 100px)',
+            overflowY: 'scroll',
+            scrollbarWidth: 'none',
+            overflowX: 'hidden'
+          }}
+        >
           <Container>
             <Categories />
-            <h3 style={{ marginBottom: 20 }}>
+            <h3 style={{ marginBottom: 10 }}>
               Veiklos <span style={{ fontSize: 14 }}>(51)</span>
             </h3>
-
-            <ActivityList />
           </Container>
+
+          <ActivityList />
         </Col>
 
-        <Col span={12}>
+        <OnlyMobile xs={0} sm={0} md={0} xl={6}>
           <ActivityMap />
-        </Col>
+        </OnlyMobile>
       </Row>
     </div>
   </Layout>

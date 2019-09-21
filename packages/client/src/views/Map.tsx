@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent: any = ({ text }: any) => <div>{text}</div>;
@@ -15,7 +16,7 @@ class ActivityMap extends Component {
     render() {
         return (
             // Important! Always set the container height explicitly
-            <div style={{ height: '100vh', width: '100vh'}}>
+            <div style={{ height: "calc(100vh - 68px)", width: '100vh'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyDzPEtqIe-1ArlBZRdmFQfGEKZr1f6HwrQ' }}
                     defaultCenter={{lat: 54.687157, lng: 25.279652}}
