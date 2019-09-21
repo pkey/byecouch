@@ -4,7 +4,7 @@ class ActivitiesService {
   private airtable;
   private activitiesBase;
   constructor() {
-    this.airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY });
+    this.airtable = new Airtable({ apiKey: "keyro1or7zPyri99K" });
     this.activitiesBase = this.airtable.base("app0v46hnuh0dHIob");
   }
   getActivities() {
