@@ -32,10 +32,12 @@ class LocationService {
             };
           })
         );
-        return orderedSpots;
+
+        return activities;
       }
       case 2: {
         //return the ones inside the circle between the two
+        return activities
       }
       default: {
         //if more than two - return the ones inside the circle between n+
