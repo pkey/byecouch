@@ -15,7 +15,7 @@ class ActivityMap extends Component<MapProps> {
         },
         zoom: 14,
         markers: [
-            {lat: 54.687157 , lng: 25.279652, activityTitle: 'Activity title'}
+            {lat: "54.687157" , lng: "25.279652", activityTitle: 'Activity title'}
         ]
     };
 

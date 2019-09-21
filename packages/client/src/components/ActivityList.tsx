@@ -26,21 +26,13 @@ const RateStars = styled(Rate)`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+ 
 
-const Cost = styled.p`
-  padding: 0px;
-  margin-bottom: 5px;
-  font-size: 12px;
-`;
+const ActivityList = ({ activities }: any) => {
 
-const colors: any = {
-  Šokiai: "magenta",
-  Sportas: "green",
-  Bedarbystė: "cyan"
-};
-
-const ActivityList = ({ activities, categories }: any) => (
-  <Container>
+  console.log(activities)
+  return (
+    <Container>
     <List
       size="large"
       pagination={{
@@ -74,7 +66,7 @@ const ActivityList = ({ activities, categories }: any) => (
                 </Col>
                 <Col xs={0} sm={6} style={{ margin: "15px 20px", padding: 0 }}>
                   <span style={{ fontSize: 12 }}>
-                    {activity.spot.name} - {activity.spot.address}
+                    {activity.spot.name || ""} - {activity.spot.address  || ""}
                   </span>
                   <Title>{activity.name}</Title>
                   <Description>{activity.description}</Description>
@@ -107,6 +99,8 @@ const ActivityList = ({ activities, categories }: any) => (
       )}
     />
   </Container>
-);
+  )
+}
 
+  
 export default ActivityList;

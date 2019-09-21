@@ -1,25 +1,25 @@
-import { List, Tag } from "antd";
-import React from "react";
-import styled from "styled-components";
+import { List, Tag } from 'antd';
+import React from 'react';
+import styled from 'styled-components';
+import { ICategory, ICategorySelected } from '../types/types';
 
 const Category: any = styled(Tag)`
-  // background-color: #fff;
-  padding: 5px;
   border-radius: 4px;
-  width: 100%;
-  text-align: center;
-  // border: 1px solid rgb(220, 224, 224);
   font-size: 14px;
   line-height: 1.43;
-  opacity: 0.6;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+
   :hover {
     opacity: 1;
     cursor: pointer;
   }
+
+  opacity: ${({ isSelected }: any) => (isSelected == true ? '1' : '0.6')};
 `;
 
-const Categories = ({ categories }: any) => (
-  <>
+const Categories = ({ categories, selectCategory }: any) =>  (
     <List
       grid={{
         gutter: 16,
@@ -33,15 +33,18 @@ const Categories = ({ categories }: any) => (
       style={{ margin: 20 }}
       size="small"
       dataSource={categories}
-      renderItem={(category: any) => (
+      renderItem={(category: ICategorySelected, index: number) => (
         <List.Item>
-          <Category color={category.color}>
+          <Category
+            isSelected={category.isSelected}
+            color={category.color}
+            onClick={() => selectCategory(index)}
+          >
             <span>{category.name}</span>
           </Category>
         </List.Item>
       )}
-    />
-  </>
-);
+    /> 
+  ) 
 
 export default Categories;
