@@ -15,7 +15,6 @@ class ActivitiesService {
     return this.activitiesBase("Activities")
       .select({
         // Selecting the first 3 records in Grid view:
-        maxRecords: 3,
         view: "Grid view"
       })
       .eachPage((records, fetchNextPage) => {
