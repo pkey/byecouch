@@ -50,7 +50,7 @@ app.post('/activities', async (req: Request, res: Response) => {
     res.send(recommendations);
   } catch (err) {
     console.log(err);
-    res.send({ err });
+    res.send({ err: err.toString() });
   }
 
 });
