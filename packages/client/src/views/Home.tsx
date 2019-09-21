@@ -49,7 +49,7 @@ class Home extends Component {
               <Filters />
               <Categories />
               <h3 style={{ marginBottom: 10 }}>
-                Veiklos <span style={{ fontSize: 14 }}>(51)</span>
+                Veiklos <span style={{ fontSize: 14 }}>({activities.length})</span>
               </h3>
             </Container>
 
