@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { Container } from 'react-bootstrap';
 
-import List from '../components/List';
+import ActivityList from '../components/ActivityList';
 import Categories from '../components/Categories'
 
 const Home = () => (
@@ -10,7 +10,7 @@ const Home = () => (
     <Container>
     <Categories />
       <h3>Activities</h3>
-      <List />
+      <ActivityList />
     </Container>
   </Layout>
 );

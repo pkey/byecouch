@@ -6,6 +6,7 @@
         "price": 90,
         "rating": 4,
         "ratingCount": 461,
+        "participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "LVJC",
@@ -20,7 +21,7 @@
         "description": "Dancing this is",
         "price": 10,
         "rating": 3,
-        "ratingCount": 120,
+        "ratingCount": 120,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Sokiu akademija",
@@ -35,7 +36,7 @@
         "description": "Coding this is",
         "price": 30,
         "rating": 5,
-        "ratingCount": 80,
+        "ratingCount": 80,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Code Academy",
@@ -50,7 +51,7 @@
         "description": "Swimming this is",
         "price": 20,
         "rating": 1,
-        "ratingCount": 20,
+        "ratingCount": 20,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "LVJC",
@@ -66,7 +67,7 @@
         "description": "Dancing this is",
         "price": "Free",
         "rating": 5,
-        "ratingCount": 1204,
+        "ratingCount": 1204,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Sokiu akademija",
@@ -81,7 +82,7 @@
         "description": "Coding this is",
         "price": "Free",
         "rating": 4,
-        "ratingCount": 210,
+        "ratingCount": 210,"participants": 20,
         "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         "spot": {
             "name": "Code Academy",

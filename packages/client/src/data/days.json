@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Pirmadienis",
+        "busy": false,
+        "time": {
+            "from": 19,
+            "to": 22
+        }
+    },
+    {
+        "name": "Trečiadienis",
+        "busy": true,
+        "time": {
+            "from": 21,
+            "to": 24
+        }
+    }
+]

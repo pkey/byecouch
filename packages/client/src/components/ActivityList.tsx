@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 
-import { List as ActivityList, Card, Rate } from 'antd';
+import { List, Card, Rate } from 'antd';
 import activityList from '../data/activities.json';
 
 const Title = styled.h5``;
@@ -34,9 +34,10 @@ const Cost = styled.p`
   font-size: 12px;
 `;
 
-const List = () => (
-    <ActivityList
+const ActivityList = () => (
+    <List
       size="large"
+      
       pagination={{
         pageSize: 20
       }}
@@ -51,7 +52,7 @@ const List = () => (
       }}
       dataSource={activityList}
       renderItem={activity => (
-        <ActivityList.Item>
+        <List.Item>
          <StyledLink to={`activity/${activity.id}`}>
          <Card
             bordered={false}
@@ -68,10 +69,10 @@ const List = () => (
           </Card>
          </StyledLink>
           
-        </ActivityList.Item>
+        </List.Item>
       )}
     />
 
 );
 
-export default List;
+export default ActivityList;
