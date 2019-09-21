@@ -1,15 +1,13 @@
-import axios from 'axios';
-import React, { Component } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import styled from 'styled-components';
-import ActivityList from '../components/ActivityList';
-import Categories from '../components/Categories';
-import Filters from '../components/Filters';
-import Layout from '../components/Layout';
-import ActivityMap from './Map';
-
-import { Spin } from 'antd';
-import AdressForms from '../components/AdressForms';
+import { Spin } from "antd";
+import axios from "axios";
+import React, { Component } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import styled from "styled-components";
+import ActivityList from "../components/ActivityList";
+import Categories from "../components/Categories";
+import Filters from "../components/Filters";
+import Layout from "../components/Layout";
+import ActivityMap from "./Map";
 
 const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
@@ -30,23 +28,23 @@ class Home extends Component {
     const { locations } = this.state;
       
     const activitiesRes: any = await this.getActivities(locations)
-    const typesRes = await axios('/api/types');
+    const typesRes = await axios('/api/categories');
 
     this.markers = [];
-    for(let item of activitiesRes.data) {
+    for (let item of activitiesRes.data) {
       this.markers.push({
         lat: item.spot.latitude,
         lng: item.spot.longitude,
         activityTitle: item.spot.name,
         id: item.id
-      })
-    }
-      this.setState({
-          activities: activitiesRes.data,
-          categories: typesRes.data,
-          isLoading: false
       });
-  } 
+    }
+    this.setState({
+      activities: activitiesRes.data,
+      categories: typesRes.data,
+      isLoading: false
+    });
+  }
 
   getActivities = async (locations: any) => {
     return  await axios.post('/api/activities', {
@@ -69,17 +67,17 @@ class Home extends Component {
             md={6}
             xl={6}
             style={{
-              height: 'calc(100vh - 100px)',
-              overflowY: 'scroll',
-              scrollbarWidth: 'none',
-              overflowX: 'hidden'
+              height: "calc(100vh - 100px)",
+              overflowY: "scroll",
+              scrollbarWidth: "none",
+              overflowX: "hidden"
             }}
           >
             <Container>
               <Filters locations={locations} setLocations={this.setLocations}/>
 
               {isLoading ? (
-                <div style={{ textAlign: 'center', margin: 20 }}>
+                <div style={{ textAlign: "center", margin: 20 }}>
                   <Spin tip="Kraunasi..." />
                 </div>
               ) : (
@@ -99,7 +97,7 @@ class Home extends Component {
           </Col>
 
           <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-            <ActivityMap markers={this.markers}/>
+            <ActivityMap markers={this.markers} />
           </OnlyMobile>
         </Row>
       </Layout>
