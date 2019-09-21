@@ -21,13 +21,16 @@ class Home extends Component {
     state = {
         activities: [],
         categories: [],
+        locations: [],
         isLoading: true
     };
   markers: any = [];
 
   async componentDidMount() {
-      const activitiesRes = await axios.post('/api/activities', {});
-      const typesRes = await axios('/api/types');
+    const { locations } = this.state;
+      
+    const activitiesRes: any = await this.getActivities(locations)
+    const typesRes = await axios('/api/types');
 
     this.markers = [];
     for(let item of activitiesRes.data) {
@@ -45,8 +48,19 @@ class Home extends Component {
       });
   } 
 
+  getActivities = async (locations: any) => {
+    return  await axios.post('/api/activities', {
+      locations
+    });
+  }
+
+  setLocations = async (locations: any) => {
+    this.setState({ locations })
+    await this.getActivities(locations)
+  }
+
   render() {
-    const { activities, categories, isLoading } = this.state;
+    const { activities, categories, isLoading, locations } = this.state;
     return (
       <Layout>
         <Row>
@@ -62,7 +76,7 @@ class Home extends Component {
             }}
           >
             <Container>
-              <Filters />
+              <Filters locations={locations} setLocations={this.setLocations}/>
 
               {isLoading ? (
                 <div style={{ textAlign: 'center', margin: 20 }}>

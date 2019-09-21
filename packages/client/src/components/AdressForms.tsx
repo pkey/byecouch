@@ -3,7 +3,7 @@ import { Form, Input, Icon, Button, Card } from 'antd';
 
 let id = 0;
 
-class DynamicFieldSet extends React.Component {
+class DynamicFieldSet extends React.Component<any> {
 // @ts-ignore
   remove = k => {
     // @ts-ignore
@@ -44,6 +44,9 @@ class DynamicFieldSet extends React.Component {
         console.log('Received values of form: ', values);
             // @ts-ignore
         console.log('Merged values:', keys.map(key => names[key]));
+        console.log(names)
+        // @ts-ignore
+        this.props.setLocations(names)
       }
     });
   };
@@ -51,22 +54,7 @@ class DynamicFieldSet extends React.Component {
   render() {
           // @ts-ignore
     const { getFieldDecorator, getFieldValue } = this.props.form;
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 4 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 20 },
-      },
-    };
-    const formItemLayoutWithOutLabel = {
-      wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 20, offset: 4 },
-      },
-    };
+
     getFieldDecorator('keys', { initialValue: [] });
     const keys = getFieldValue('keys');
         // @ts-ignore
@@ -101,7 +89,7 @@ class DynamicFieldSet extends React.Component {
         {formItems}
         <Form.Item >
           <Button type="dashed" onClick={this.add} style={{marginRight: 20  }}>
-            <Icon type="plus" /> Add field
+            <Icon type="plus" /> Pridėti
           </Button>
           <Button type="primary" htmlType="submit">
             Išsaugoti

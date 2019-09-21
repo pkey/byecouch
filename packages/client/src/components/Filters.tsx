@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { DatePicker, Button, Popover } from 'antd';
+import { DatePicker, Button, Popover, Slider } from 'antd';
 import AdressForms from './AdressForms';
 
 const Container = styled.div`
@@ -12,7 +12,7 @@ const Container = styled.div`
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
  
 
-const Filters = () => (
+const Filters = ({ locations, setLocations}: any) => (
   <Container>
     <Popover
       placement="bottomLeft"
@@ -25,7 +25,7 @@ const Filters = () => (
     <Popover
       placement="bottomLeft"
       title="Kaina"
-      content={<div />}
+      content={<Slider defaultValue={30} tooltipVisible />}
       trigger="click"
     >
       <Button style={{marginRight: 20}}>Kaina</Button>
@@ -33,7 +33,8 @@ const Filters = () => (
     <Popover
       placement="bottomLeft"
       title="Lokacijos"
-      content={<AdressForms />}
+      // @ts-ignore
+      content={<AdressForms locations={locations} setLocations={setLocations}/>}
       trigger="click"
     >
       <Button>Lokacijos</Button>
