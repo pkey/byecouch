@@ -17,21 +17,32 @@ const OnlyMobile = styled(Col)`
 `;
 
 class Home extends Component {
-  state = {
-    activities: [],
-    categories: [],
-    isLoading: true
-  };
+    state = {
+        activities: [],
+        categories: [],
+        isLoading: true
+    };
+  markers: any = [];
 
   async componentDidMount() {
-    const activitiesRes = await axios.post('/api/activities', {});
-    const typesRes = await axios('/api/types');
-    this.setState({
-      activities: activitiesRes.data,
-      categories: typesRes.data,
-      isLoading: false
-    });
-  }
+      const activitiesRes = await axios.post('/api/activities', {});
+      const typesRes = await axios('/api/types');
+
+    this.markers = [];
+    for(let item of activitiesRes.data) {
+      this.markers.push({
+        lat: item.spot.latitude,
+        lng: item.spot.longitude,
+        activityTitle: item.spot.name,
+        id: item.id
+      })
+    }
+      this.setState({
+          activities: activitiesRes.data,
+          categories: typesRes.data,
+          isLoading: false
+      });
+  } 
 
   render() {
     const { activities, categories, isLoading } = this.state;
@@ -72,7 +83,7 @@ class Home extends Component {
           </Col>
 
           <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-            <ActivityMap />
+            <ActivityMap markers={this.markers}/>
           </OnlyMobile>
         </Row>
       </Layout>
