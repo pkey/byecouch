@@ -60,10 +60,10 @@ class Home extends Component {
                 <>
                   <Categories categories={categories} />
                   <h3 style={{ marginBottom: 10 }}>
-                    Veiklos{' '}
+                    Veiklos
                     <span style={{ fontSize: 14 }}>({activities.length})</span>
                   </h3>
-                  <ActivityList activities={activities} />
+                  <ActivityList activities={activities} categories={categories} />
 
                 </>
               )}

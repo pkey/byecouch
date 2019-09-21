@@ -39,7 +39,7 @@ const colors: any = {
   Bedarbystė: 'cyan'
 };
 
-const ActivityList = ({ activities }: any) => (
+const ActivityList = ({ activities, categories }: any) => (
   <Container>
     <List
       size="large"
@@ -85,7 +85,7 @@ const ActivityList = ({ activities }: any) => (
                   <span style={{ marginRight: 20 }}>
                     {activity.price} $/mėn
                   </span>
-                  <Tag color={colors[activity.category]}>
+                  <Tag color={categories[activity.type]}>
                     {activity.category}
                   </Tag>
                 </Col>
