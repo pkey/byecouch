@@ -5,6 +5,8 @@ import { Container } from 'react-bootstrap';
 
 import ActivityList from '../components/ActivityList';
 import Categories from '../components/Categories';
+import Filters from '../components/Filters';
+
 import { Row, Col } from 'react-bootstrap';
 import ActivityMap from './Map';
 
@@ -16,7 +18,6 @@ const OnlyMobile = styled(Col)`
 
 const Home = () => (
   <Layout>
-    <div style={{ height: 'calc(100vh - 100px)' }}>
       <Row>
         <Col
           sm={12}
@@ -27,9 +28,11 @@ const Home = () => (
             overflowY: 'scroll',
             scrollbarWidth: 'none',
             overflowX: 'hidden'
+
           }}
         >
           <Container>
+            <Filters />
             <Categories />
             <h3 style={{ marginBottom: 10 }}>
               Veiklos <span style={{ fontSize: 14 }}>(51)</span>
@@ -42,8 +45,8 @@ const Home = () => (
         <OnlyMobile xs={0} sm={0} md={0} xl={6}>
           <ActivityMap />
         </OnlyMobile>
+
       </Row>
-    </div>
   </Layout>
 );
 

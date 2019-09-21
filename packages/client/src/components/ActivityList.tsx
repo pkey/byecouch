@@ -48,7 +48,7 @@ const ActivityList = () => (
   <List
     size="large"
     pagination={{
-      pageSize: 4
+      pageSize: 10
     }}
 
     dataSource={activityList}

@@ -6,7 +6,7 @@ import categories from '../data/categories.json';
 
 const Category:any = styled(Tag)`
     // background-color: #fff;
-    padding: 15px;
+    padding: 5px;
     border-radius: 4px;
     width: 100%;
     text-align: center;
