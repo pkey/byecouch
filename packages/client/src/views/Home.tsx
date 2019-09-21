@@ -9,6 +9,7 @@ import Layout from '../components/Layout';
 import ActivityMap from './Map';
 
 import { Spin } from 'antd';
+import AdressForms from '../components/AdressForms';
 
 const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
@@ -50,10 +51,10 @@ class Home extends Component {
             }}
           >
             <Container>
-              {/* <Filters /> */}
+              <Filters />
 
               {isLoading ? (
-                <div style={{ textAlign: 'center', margin: 20}}>
+                <div style={{ textAlign: 'center', margin: 20 }}>
                   <Spin tip="Kraunasi..." />
                 </div>
               ) : (
@@ -61,14 +62,15 @@ class Home extends Component {
                   <Categories categories={categories} />
                   <h3 style={{ marginBottom: 10 }}>
                     Veiklos
-                    <span style={{ fontSize: 14 }}>{" "}({activities.length})</span>
+                    <span style={{ fontSize: 14 }}> ({activities.length})</span>
                   </h3>
-                  <ActivityList activities={activities} categories={categories} />
-
+                  <ActivityList
+                    activities={activities}
+                    categories={categories}
+                  />
                 </>
               )}
             </Container>
-
           </Col>
 
           <OnlyMobile xs={0} sm={0} md={0} xl={6}>

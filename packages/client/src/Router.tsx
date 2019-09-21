@@ -8,14 +8,12 @@ import {
 
 import Map from './views/Map';
 import Home from './views/Home'
-import Calendar from './views/Calendar';
 import ActivityPage from './views/AcivityPage'
 
 const Router = () => (
   <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/calendar" component={Calendar} />
         <Route path="/map" component={Map} />
         <Route path="/activity/:id" component={ActivityPage} />
       </Switch>
