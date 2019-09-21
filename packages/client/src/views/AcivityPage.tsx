@@ -2,7 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/Layout';
 
-import { Card, Comment, Avatar, Rate, Statistic, Col, Row, Icon } from 'antd';
+import {
+  Card,
+  Comment,
+  PageHeader,
+  Avatar,
+  Rate,
+  Statistic,
+  Col,
+  Row,
+  Icon,
+  Tag
+} from 'antd';
 
 import activities from '../data/activities.json';
 import { Container } from 'react-bootstrap';
@@ -34,6 +45,15 @@ const Comments = () => (
   />
 );
 
+const types: any = {
+  Rankdarbiai: 'red',
+  Menai: 'cyan',
+  Sportas: 'gold',
+  Muzika: 'magenta',
+  Tech: 'green',
+  Kalbos: 'purple'
+};
+
 const Activity = () => (
   <Layout>
     <Container>
@@ -47,10 +67,18 @@ const Activity = () => (
       >
         <RateStars disabled defaultValue={activity.rating} />
 
-        <h2 style={{ margin: '10px 0' }}>{activity.name}</h2>
-        <p>
-          <Icon type="phone" theme="twoTone" /> + {activity.phone}
-        </p>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ marginBottom: 20 }}>
+            <h2>{activity.name}</h2>
+            <Tag color={types[activity.category]}>{activity.category}</Tag>
+          </div>
+
+          <div>
+            <span style={{ marginRight: 10 }}>+ {activity.phone}</span>
+            <Icon spin={true} type="phone" theme="twoTone" />
+          </div>
+        </div>
+
         <p>{activity.description}</p>
 
         <Row gutter={16}>
