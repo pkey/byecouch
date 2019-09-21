@@ -9,7 +9,7 @@ import {
 import Map from './views/Map';
 import Home from './views/Home'
 import Calendar from './views/Calendar';
-import ActivityPage from './views/AcvityPage'
+import ActivityPage from './views/AcivityPage'
 
 const Router = () => (
   <BrowserRouter>

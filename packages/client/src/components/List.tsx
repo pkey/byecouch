@@ -24,6 +24,10 @@ const RateStars = styled(Rate)`
   margin-right: 10px;
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`
+
 const Cost = styled.p`
   padding: 0px;
   margin-bottom: 5px;
@@ -48,7 +52,7 @@ const List = () => (
       dataSource={activityList}
       renderItem={activity => (
         <ActivityList.Item>
-         <Link to={`activity/${activity.id}`}>
+         <StyledLink to={`activity/${activity.id}`}>
          <Card
             bordered={false}
             hoverable
@@ -62,7 +66,7 @@ const List = () => (
               <RatingCount>{activity.ratingCount}</RatingCount>
             </Rating>
           </Card>
-         </Link>
+         </StyledLink>
           
         </ActivityList.Item>
       )}
