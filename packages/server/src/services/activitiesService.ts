@@ -1,4 +1,5 @@
 import Airtable from "airtable";
+import { Activity } from "../models/models";
 
 class ActivitiesService {
   private airtable;
@@ -7,7 +8,7 @@ class ActivitiesService {
     this.airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY });
     this.activitiesBase = this.airtable.base("app0v46hnuh0dHIob");
   }
-  getActivities() {
+  getActivities(): Activity[] {
     this.activitiesBase("Activities")
       .select({
         // Selecting the first 3 records in Grid view:
@@ -26,6 +27,7 @@ class ActivitiesService {
         // If there are no more records, `done` will get called.
         fetchNextPage();
       });
+    return [];
   }
 }
 
