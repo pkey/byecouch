@@ -20,7 +20,6 @@ const OnlyMobile = styled(Col)`
 
 
 class Home extends Component {
-
   state = {
     activities: []
   }

@@ -1,10 +1,10 @@
-import { Card, List, Rate, Tag } from 'antd';
-import axios from 'axios';
+import { Card, List, Rate, Tag, Spin, Alert } from 'antd';
+
 import React, { useEffect, useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import activityList from '../data/activities.json';
+
 const Title = styled.h5``;
 const Description = styled.p``;
 
@@ -41,51 +41,67 @@ const colors: any = {
 };
 
 const ActivityList = ({ activities }: any) => (
-  <List
-    size="large"
-    pagination={{
-      pageSize: 10
-    }}
-    dataSource={activities}
-    renderItem={(activity: any) => (
-      <List.Item style={{ padding: 20 }}>
-        <Card
-          hoverable
-          style={{ height: 200, width: '100%' }}
-          bodyStyle={{ padding: 0 }}
-        >
-          <StyledLink to={`activity/${activity.id}`}>
-            <Row>
-              <Col xs={0} sm={4} style={{ padding: 0 }}>
-                <img
-                  src={activity.image}
-                  style={{
-                    height: '200px',
-                    width: '100%',
-                    borderRadius: 10,
-                    padding: 5
-                  }}
-                />
-              </Col>
-              <Col xs={0} sm={6} style={{ margin: '15px 20px', padding: 0 }}>
-                <span style={{ fontSize: 12 }}>
-                  {activity.spot.name} - {activity.spot.address}
-                </span>
-                <Title>{activity.name}</Title>
-                <Description>{activity.description}</Description>
-                <Rating>
-                  <RateStars disabled defaultValue={activity.rating} />
-                  <RatingCount>{activity.ratingCount}</RatingCount>
-                </Rating>
-                <span style={{ marginRight: 20 }}>{activity.price} $/mėn</span>
-                <Tag color={colors[activity.category]}>{activity.category}</Tag>
-              </Col>
-            </Row>
-          </StyledLink>
-        </Card>
-      </List.Item>
+  <Container>
+    {!activities.length ? (
+      <div style={{ textAlign: 'center' }}>
+        <Spin tip="Kraunasi..." />
+      </div>
+    ) : (
+      <List
+        size="large"
+        pagination={{
+          pageSize: 10
+        }}
+        dataSource={activities}
+        renderItem={(activity: any) => (
+          <List.Item style={{ padding: 20 }}>
+            <Card
+              hoverable
+              style={{ height: 200, width: '100%' }}
+              bodyStyle={{ padding: 0 }}
+            >
+              <StyledLink to={`activity/${activity.id}`}>
+                <Row>
+                  <Col xs={0} sm={4} style={{ padding: 0 }}>
+                    <img
+                      src={activity.image}
+                      style={{
+                        height: '200px',
+                        width: '100%',
+                        borderRadius: 10,
+                        padding: 5
+                      }}
+                    />
+                  </Col>
+                  <Col
+                    xs={0}
+                    sm={6}
+                    style={{ margin: '15px 20px', padding: 0 }}
+                  >
+                    <span style={{ fontSize: 12 }}>
+                      {activity.spot.name} - {activity.spot.address}
+                    </span>
+                    <Title>{activity.name}</Title>
+                    <Description>{activity.description}</Description>
+                    <Rating>
+                      <RateStars disabled defaultValue={activity.rating} />
+                      <RatingCount>{activity.ratingCount}</RatingCount>
+                    </Rating>
+                    <span style={{ marginRight: 20 }}>
+                      {activity.price} $/mėn
+                    </span>
+                    <Tag color={colors[activity.category]}>
+                      {activity.category}
+                    </Tag>
+                  </Col>
+                </Row>
+              </StyledLink>
+            </Card>
+          </List.Item>
+        )}
+      />
     )}
-  />
+  </Container>
 );
 
 export default ActivityList;
