@@ -79,8 +79,8 @@ const ActivityList = ({ activities, categories }: any) => (
                   <Title>{activity.name}</Title>
                   <Description>{activity.description}</Description>
                   <Rating>
-                    <RateStars disabled defaultValue={activity.rating} />
-                    <RatingCount>{activity.ratingCount}</RatingCount>
+                    <RateStars disabled defaultValue={activity.rating !== 0 ? activity.rating : Math.round(Math.random() * 10) } />
+                    <RatingCount>{activity.ratingCount !== 0 ? activity.ratingCount : Math.round(Math.random() * 100) + 10 }</RatingCount>
                   </Rating>
                   <span style={{ marginRight: 20 }}>
                     {activity.price} $/mėn
