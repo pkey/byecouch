@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 
 import GoogleMapReact from 'google-map-react';
+import { MapProps } from "../types/types";
 
 const AnyReactComponent: any = ({ text }: any) => <div>{text}</div>;
 
-class ActivityMap extends Component {
-    static defaultProps: any = {
+class ActivityMap extends Component<MapProps> {
+    static defaultProps: MapProps= {
         center: {
             lat: 54.687157,
             lng: 25.279652
@@ -19,12 +20,12 @@ class ActivityMap extends Component {
             <div style={{ height: "calc(100vh - 68px)", width: '100vh'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyDzPEtqIe-1ArlBZRdmFQfGEKZr1f6HwrQ' }}
-                    defaultCenter={{lat: 54.687157, lng: 25.279652}}
-                    defaultZoom={14}
+                    defaultCenter={{lat: this.props.center.lat, lng: this.props.center.lng}}
+                    defaultZoom={this.props.zoom}
                 >
                     <AnyReactComponent
-                        lat={54.687157}
-                        lng={25.279652}
+                        lat={this.props.center.lat}
+                        lng={this.props.center.lng}
                         text="My Marker"
                     />
                 </GoogleMapReact>
