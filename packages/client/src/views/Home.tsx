@@ -14,6 +14,7 @@ import {
   IMarker
 } from "../types/types";
 import ActivityMap from "./Map";
+import { act } from "react-dom/test-utils";
 
 const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
@@ -120,10 +121,13 @@ const Home = () => {
   function selectCategory(index: number) {
     // @ts-ignore, FIXME: don't know why the ...categories works
     categories[index].isSelected = !categories[index].isSelected;
+    console.log('Categories: ', categories);
     setCategories([...categories]);
 
     const activities = selectCategoryActivities();
     setFiltredActivities([...activities]);
+    const parsedMarkers = iterateMarkers(activities);
+    setMarkers(parsedMarkers);
   }
 
   function selectCategoryActivities() {
@@ -142,8 +146,6 @@ const Home = () => {
       const filteredActivities = activities.filter((activity: IActivity) =>
         categoryHash.has(activity.category.name)
       );
-      const parsedMarkers = iterateMarkers(filteredActivities);
-      setMarkers(parsedMarkers);
       return filteredActivities;
     }
   }
