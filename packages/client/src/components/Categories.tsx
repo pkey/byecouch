@@ -16,7 +16,7 @@ const Category: any = styled(Tag)`
     cursor: pointer;
   }
 
-  opacity: ${({ isSelected }: any) => (isSelected == true ? '1' : '0.6')};
+  opacity: ${({ isSelected }: any) => (isSelected == true ? '1' : '0.4')};
 `;
 
 const Categories = ({ categories, selectCategory }: any) =>  (
