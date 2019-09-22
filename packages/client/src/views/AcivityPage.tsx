@@ -132,7 +132,7 @@ class Activity extends Component {
                 </div>
               </div>
 
-              <p>{activities[0].description}</p>
+              <p>{this.state.activity.description}</p>
 
               <Row gutter={16}>
                 <Col span={4}>
