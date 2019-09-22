@@ -149,10 +149,11 @@ const Home = () => {
   const updateActivitiesByLocations = async (locations) => {
     try {
       const response = await ApiRequests.getActivities(locations)
-      console.log("HERE >>> ")
-      console.log(response, locations)
 
+      console.log("HERE >>> ")
+      console.log(response)
       setActivities([...response])
+      setFiltredActivities([...response])
       setLocations([...locations])
     } catch (err) {
       console.error(err)

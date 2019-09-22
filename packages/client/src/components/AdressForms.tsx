@@ -121,13 +121,7 @@ class DynamicFieldSet extends React.Component<any> {
             <div>
               {getFieldDecorator(`names[${k}]`, {
                 validateTrigger: ['onChange', 'onBlur'],
-                rules: [
-                  {
-                    required: true,
-                    whitespace: true,
-                    message: 'Iveskite adresą'
-                  }
-                ]
+
               })(
                 <Input
                   {...getInputProps({
