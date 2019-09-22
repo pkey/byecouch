@@ -48,7 +48,7 @@ class ApiRequests {
     try {
       const response: IActivityResponse = await axios.post(
         "/api/activities",
-        {}
+        { locations }
       );
       return response.data;
     } catch (err) {
@@ -146,6 +146,19 @@ const Home = () => {
     }
   }
 
+  const updateActivitiesByLocations = async (locations) => {
+    try {
+      const response = await ApiRequests.getActivities(locations)
+      console.log("HERE >>> ")
+      console.log(response, locations)
+
+      setActivities([...response])
+      setLocations([...locations])
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   return (
     <Layout>
       <Row style={{ margin: 0 }}>
@@ -162,7 +175,7 @@ const Home = () => {
           }}
         >
           <Container>
-            <Filters locations={locations} setLocations={setLocations} />
+            <Filters locations={locations} setLocations={updateActivitiesByLocations} />
 
             {isLoading ? (
               <div style={{ textAlign: "center", margin: 20 }}>

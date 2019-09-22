@@ -1,14 +1,21 @@
-import { Button, Form, Icon, Input } from "antd";
-import React from "react";
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from "react-places-autocomplete";
+import { Button, Form, Input } from 'antd';
+import React from 'react';
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from 'react-places-autocomplete';
 
 class DynamicFieldSet extends React.Component<any> {
+  state = {
+    addreses: []
+  };
+
   // @ts-ignore
   remove = k => {
     // @ts-ignore
     const { form } = this.props;
     // can use data-binding to get
-    const keys = form.getFieldValue("keys");
+    const keys = form.getFieldValue('keys');
     // We need at least one passenger
     if (keys.length === 1) {
       return;
@@ -25,13 +32,14 @@ class DynamicFieldSet extends React.Component<any> {
     // @ts-ignore
     const { form } = this.props;
     // can use data-binding to get
-    const keys = form.getFieldValue("keys");
+    const keys = form.getFieldValue('keys');
     // can use data-binding to set
     // important! notify form to detect changes
     form.setFieldsValue({
       keys: keys.concat(keys[keys.length - 1] + 1)
     });
   };
+
   // @ts-ignore
   handleSubmit = e => {
     e.preventDefault();
@@ -39,17 +47,19 @@ class DynamicFieldSet extends React.Component<any> {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         const { keys, names, coordinates } = values;
-        console.log("Received values of form: ", values);
+        console.log('Received values of form: ', values);
         // @ts-ignore
-        console.log("Merged values:", keys.map(key => names[key]));
+        console.log('Merged values:', keys.map(key => names[key]));
         console.log(names);
-        // @ts-ignore
-        this.props.setLocations(
-          coordinates.map(c => ({
-            latitude: c.lat,
-            longitude: c.lng
-          }))
-        );
+
+        const parsedCoordinates = coordinates.map(({ lat, lng }) => ({
+          name: "Yolo",
+          latitude: lat,
+          longitude: lng
+        }))
+
+        console.log(parsedCoordinates)
+        this.props.setLocations(parsedCoordinates)
       }
     });
   };
@@ -58,44 +68,49 @@ class DynamicFieldSet extends React.Component<any> {
     this.setState({ address });
   };
 
-  handleSelect = address => {
-    //Override input with selection from the list
-    const names = this.props.form.getFieldValue("names");
-    names[names.length - 1] = address;
+  handleSelect = (address, index) => {
+    const names = this.props.form.getFieldValue('names');
+    names[index] = address;
 
     this.props.form.setFieldsValue({
       names: this.props.form.setFieldsValue({ names: names })
     });
 
     //Set coordinates
-    const coordinates = this.props.form.getFieldValue("coordinates");
+    const coordinates = this.props.form.getFieldValue('coordinates');
 
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
-        coordinates.push(latLng);
+        coordinates[index] = latLng
         this.props.form.setFieldsValue({
           coordinates
         });
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
 
   render() {
-    // @ts-ignore
+    const placeholders = {
+      0: 'Namų adresas',
+      1: 'Darbo adresas'
+    };
+
     const { getFieldDecorator, getFieldValue } = this.props.form;
-    getFieldDecorator("keys", { initialValue: [0] });
-    getFieldDecorator("coordinates", { initialValue: [] });
-    const keys = getFieldValue("keys");
+
+    getFieldDecorator('keys', { initialValue: [0, 1] });
+    getFieldDecorator('coordinates', { initialValue: [] });
+
+    const keys = getFieldValue('keys');
     // @ts-ignore
     const formItems = keys.map((k, index) => {
-      const values = getFieldValue("names");
+      const values = getFieldValue('names');
       return (
         <PlacesAutocomplete
-          value={values ? values[k] : ""}
+          value={values ? values[k] : ''}
           onChange={this.handleChange}
-          onSelect={this.handleSelect}
-          debounce={2000}
+          onSelect={value => this.handleSelect(value, k)}
+          debounce={1000}
         >
           {({
             getInputProps,
@@ -105,33 +120,33 @@ class DynamicFieldSet extends React.Component<any> {
           }) => (
             <div>
               {getFieldDecorator(`names[${k}]`, {
-                validateTrigger: ["onChange", "onBlur"],
+                validateTrigger: ['onChange', 'onBlur'],
                 rules: [
                   {
                     required: true,
                     whitespace: true,
-                    message: "Iveskite adresą"
+                    message: 'Iveskite adresą'
                   }
                 ]
               })(
                 <Input
                   {...getInputProps({
-                    placeholder: "Adresas",
-                    className: "location-search-input"
+                    placeholder: placeholders[k],
+                    className: 'location-search-input'
                   })}
-                  style={{ width: "90%", marginRight: 8 }}
+                  style={{ width: '90%', margin: '10px 8px 10px 0px' }}
                 />
               )}
               <div className="autocomplete-dropdown-container">
-                {loading && <div>Loading...</div>}
+                {loading && <div>Kraunasi...</div>}
                 {suggestions.map(suggestion => {
                   const className = suggestion.active
-                    ? "suggestion-item--active"
-                    : "suggestion-item";
+                    ? 'suggestion-item--active'
+                    : 'suggestion-item';
                   // inline style for demonstration purpose
                   const style = suggestion.active
-                    ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                    : { backgroundColor: "#ffffff", cursor: "pointer" };
+                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
                   return (
                     <div
                       {...getSuggestionItemProps(suggestion, {
@@ -150,49 +165,13 @@ class DynamicFieldSet extends React.Component<any> {
       );
     });
 
-    /*
-    
-    TODO: Remove when not needed
-
-    // const formItems = keys.map((k, index) => (
-    //   <Form.Item
-    //     style={{ width: "100%" }}
-    //     label={index === 0 ? "" : ""}
-    //     required={false}
-    //     key={k}
-    //   >
-    //     {getFieldDecorator(`names[${k}]`, {
-    //       validateTrigger: ["onChange", "onBlur"],
-    //       rules: [
-    //         {
-    //           required: true,
-    //           whitespace: true,
-    //           message: "Iveskite adresą"
-    //         }
-    //       ]
-    //     })(
-    //       <Input
-    //         placeholder="Adresas"
-    //         style={{ width: "90%", marginRight: 8 }}
-    //       />
-    //     )}
-    //     {keys.length > 1 ? (
-    //       <Icon
-    //         className="dynamic-delete-button"
-    //         type="minus-circle-o"
-    //         onClick={() => this.remove(k)}
-    //       />
-    //     ) : null}
-    //   </Form.Item>
-    // ));
-    */
     return (
-      <Form style={{ marginTop: 40 }} onSubmit={this.handleSubmit}>
+      <Form style={{ marginTop: 10 }} onSubmit={this.handleSubmit}>
         {formItems}
         <Form.Item>
-          <Button type="dashed" onClick={this.add} style={{ marginRight: 20 }}>
+          {/* <Button type="dashed" onClick={this.add} style={{ marginRight: 20 }}>
             <Icon type="plus" /> Pridėti
-          </Button>
+          </Button> */}
           <Button type="primary" htmlType="submit">
             Išsaugoti
           </Button>
@@ -202,4 +181,4 @@ class DynamicFieldSet extends React.Component<any> {
   }
 }
 
-export default Form.create({ name: "dynamic_form_item" })(DynamicFieldSet);
+export default Form.create({ name: 'dynamic_form_item' })(DynamicFieldSet);
