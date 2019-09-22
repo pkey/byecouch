@@ -27,6 +27,23 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
  
+const MobileCard = styled(Card)`
+  width: 100%;
+  height: 200px;
+
+  @media screen and (max-device-width: 760px) {
+    height: auto;
+  }
+`
+const MobileCol = styled(Col)`
+  margin: 15px 20px;
+  padding: 0px;
+
+  @media screen and (max-device-width: 760px) {
+    height: auto;
+    padding: 10px;
+  }
+`
 
 const ActivityList = ({ activities }: any) => {
 
@@ -41,9 +58,8 @@ const ActivityList = ({ activities }: any) => {
       dataSource={activities}
       renderItem={(activity: any) => (
         <List.Item style={{ padding: 20 }}>
-          <Card
-            hoverable
-            style={{ height: 200, width: "100%" }}
+          <MobileCard
+            hoverable 
             bodyStyle={{ padding: 0 }}
           >
             <StyledLink to={`activity/${activity.id}`}>
@@ -64,7 +80,7 @@ const ActivityList = ({ activities }: any) => {
                     }}
                   />
                 </Col>
-                <Col xs={0} sm={6} style={{ margin: "15px 20px", padding: 0 }}>
+                <MobileCol xs={0} sm={6} >
                   <span style={{ fontSize: 12 }}>
                     {activity.spot.name || ""} - {activity.spot.address  || ""}
                   </span>
@@ -91,10 +107,10 @@ const ActivityList = ({ activities }: any) => {
                   <Tag color={activity.category.color}>
                     {activity.category.name}
                   </Tag>
-                </Col>
+                </MobileCol>
               </Row>
             </StyledLink>
-          </Card>
+          </MobileCard>
         </List.Item>
       )}
     />
