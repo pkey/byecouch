@@ -69,7 +69,7 @@ class Activity extends Component {
 
     async componentDidMount() {
             try {
-                const activites = await ApiRequests.getActivities({});
+                const activites = await ApiRequests.getActivities([]);
                 console.log(activites)
                 // @ts-ignore
                 // @ts-ignore
