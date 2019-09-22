@@ -12,7 +12,7 @@ const Category: any = styled(Tag)`
   width: 100%;
 
   :hover {
-    opacity: 1;
+    opacity: 0.7;
     cursor: pointer;
   }
 
