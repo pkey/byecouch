@@ -53,7 +53,7 @@ class DynamicFieldSet extends React.Component<any> {
         console.log(names);
 
         const parsedCoordinates = coordinates.map(({ lat, lng }) => ({
-          name: "Yolo",
+          name: "Selected location",
           latitude: lat,
           longitude: lng
         }))

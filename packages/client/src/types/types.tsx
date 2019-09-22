@@ -1,7 +1,8 @@
 export interface MapProps {
   center: ICenter;
-  zoom: number;
+  zoom?: number;
   markers?: IMarker[];
+  locations?: any[]
 }
 
 export interface ICenter {

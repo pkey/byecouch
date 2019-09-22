@@ -198,15 +198,15 @@ const Home = () => {
                   categories={categories}
                   setCenter={setCenter}
                 />
-                </Container> 
-                
+                </Container>
+
               </>
             )}
           </Container>
         </Col>
 
         <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-          <ActivityMap zoom={14} markers={markers} center={center} />
+          <ActivityMap markers={markers} locations={locations} center={center}/>
         </OnlyMobile>
       </Row>
     </Layout>

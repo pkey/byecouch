@@ -11,10 +11,18 @@ class ActivityMap extends Component<MapProps> {
 
 
     render() {
+        console.log('locations => ',this.props.locations);
         const displayedMarkers = [];
 
         for(const value of this.props.markers? this.props.markers : []) {
-            displayedMarkers.push(<Marker id={value.id} key={value.id} lat={value.lat} lng={value.lng} name={value.activityTitle} color={value.color}/>);
+                displayedMarkers.push(<Marker id={value.id} key={value.id} lat={value.lat} lng={value.lng}
+                                              name={value.activityTitle} color={value.color}/>);
+        }
+        let index = 100;
+
+        for(const locationItem of this.props.locations? this.props.locations : []) {
+            index++;
+            displayedMarkers.push(<Marker id={index} key={index} lat={locationItem.latitude} lng={locationItem.longitude} name={locationItem.name} location={true} color={"black"}/>);
         }
 
         return (
