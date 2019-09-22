@@ -43,7 +43,7 @@ const Title = ({
   </h3>
 );
 
-class ApiRequests {
+export class ApiRequests {
   static getActivities = async (locations: any) => {
     try {
       const response: IActivityResponse = await axios.post(
