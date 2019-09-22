@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     "/api",
     proxy({
-      target: "http://herokuapp:4000/",
+      target: "http://localhost:4000/",
       changeOrigin: true,
       pathRewrite: {
         "^/api": ""
