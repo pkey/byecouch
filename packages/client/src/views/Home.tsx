@@ -21,6 +21,7 @@ const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
     display: none;
   }
+  padding: 0px;
 `;
 
 interface IActivityResponse {
@@ -146,7 +147,7 @@ const Home = () => {
 
   return (
     <Layout>
-      <Row>
+      <Row style={{ margin: 0 }}>
         <Col
           sm={12}
           md={6}
@@ -155,7 +156,8 @@ const Home = () => {
             height: 'calc(100vh - 100px)',
             overflowY: 'scroll',
             scrollbarWidth: 'none',
-            overflowX: 'hidden'
+            overflowX: 'hidden',
+            padding: 0
           }}
         >
           <Container>
