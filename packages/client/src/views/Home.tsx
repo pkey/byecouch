@@ -152,8 +152,10 @@ const Home = () => {
 
   const updateActivitiesByLocations = async (locations) => {
     try {
+      setLoading(true)
       const response = await ApiRequests.getActivities(locations)
-
+      setLoading(false)
+      
       setActivities([...response])
       setFiltredActivities([...response])
       setLocations([...locations])
