@@ -17,6 +17,7 @@ class ActivitiesService {
         .select({ view: "Grid view" })
         .eachPage((records, fetchNextPage) => {
           records.forEach(({ fields }: any) => {
+            console.log(fields.Spot ? fields.Spot[0] : [""]);
             activities.push({
               id: fields.Id,
               description: fields.Description,
@@ -28,10 +29,12 @@ class ActivitiesService {
               link: fields.Link,
               phoneNumber: fields.PhoneNumber,
               email: fields.Email,
-              category: fields.Category[0],
+              category: fields.Category
+                ? fields.Category[0]
+                : "rec4wvgwKdXwJZsjp",
               events: [],
               name: fields.Name,
-              spot: fields.Spot[0]
+              spot: fields.Spot ? fields.Spot[0] : "recmSyfZKUG0sYRRv"
             });
           });
 
