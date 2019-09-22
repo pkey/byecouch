@@ -23,7 +23,7 @@ import Categories from "../components/Categories";
 import ActivityList from "../components/ActivityList";
 import { IActivity, MapProps } from "../types/types";
 import { act } from "react-dom/test-utils";
-
+import { PayPalButton } from "react-paypal-button-v2";
 // let activity = activities[0];
 
 const RateStars = styled(Rate)`
@@ -132,11 +132,14 @@ class Activity extends Component {
                 </div>
               </div>
 
-              <p>{this.state.activity.description}</p>
+              <p>{activities[0].description}</p>
 
               <Row gutter={16}>
                 <Col span={4}>
-                  <Statistic title="Mėnesio kaina" value={this.state.activity.price + '$'}/>
+                  <Statistic title="Mėnesio kaina" value={this.state.activity.price + '$'} style={{margin: "20px 0"}}/>
+                  <PayPalButton
+        amount={this.state.activity.price}
+      />
                 </Col>
                 <Col span={4}>
                   <Statistic title="Dalyvių skaičius" value={9}/>
