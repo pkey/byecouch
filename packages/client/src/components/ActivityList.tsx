@@ -22,7 +22,7 @@ const RatingCount = styled.span`
 `;
 
 const RateStars = styled(Rate)`
-  font-size: 20px;
+  font-size: 15px;
   margin-right: 10px;
 `;
 
@@ -98,7 +98,7 @@ const ActivityList = ({ activities, setCenter }: any) => {
                     <Description>
                       {!activity.description
                         ? ""
-                        : activity.description.substr(0, 60) + "..."}
+                        : activity.description.substr(0, 40) + "..."}
                     </Description>
                     <Rating>
                       <RateStars
