@@ -76,11 +76,12 @@ const Home = () => {
   const [markers, setMarkers] = useState([]);
 
   const iterateMarkers = (activites: IActivity[]): IMarker[] =>
-    activites.map(({ id, spot }) => ({
+    activites.map(({ id, spot, category }) => ({
       lat: spot.latitude,
       lng: spot.longitude,
       activityTitle: spot.name,
-      id: id
+      id: id,
+      color: category.color
     }));
 
   const iterateCategories = (categories: ICategory[]): ICategorySelected[] =>
@@ -139,6 +140,8 @@ const Home = () => {
       const filteredActivities = activities.filter((activity: IActivity) =>
         categoryHash.has(activity.category.name)
       );
+      const parsedMarkers = iterateMarkers(filteredActivities);
+      setMarkers(parsedMarkers);
       return filteredActivities;
     }
   }

@@ -9,6 +9,7 @@ export interface IMarker {
   lng: string;
   activityTitle: string;
   id?: number;
+  color?: string;
 }
 
 export interface ISpot {

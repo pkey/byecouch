@@ -23,14 +23,14 @@ class ActivityMap extends Component<MapProps> {
         const displayedMarkers = [];
 
         for(const value of this.props.markers? this.props.markers : []) {
-            displayedMarkers.push(<Marker id={value.id} key={value.id} lat={value.lat} lng={value.lng} name={value.activityTitle}/>);
+            displayedMarkers.push(<Marker id={value.id} key={value.id} lat={value.lat} lng={value.lng} name={value.activityTitle} color={value.color}/>);
         }
 
         return (
             // Important! Always set the container height explicitly
             <div style={{ height: "calc(100vh - 68px)", width: '100vh'}}>
                 <GoogleMapReact
-                    bootstrapURLKeys={{ key: 'AIzaSyDzPEtqIe-1ArlBZRdmFQfGEKZr1f6HwrQ' }}
+                    bootstrapURLKeys={{ key: 'AIzaSyB-1JgX4yKF6F7uukm_co468kH3JUSY3Pw' }}
                     defaultCenter={{lat: this.props.center.lat, lng: this.props.center.lng}}
                     defaultZoom={this.props.zoom}
                 >
