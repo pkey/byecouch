@@ -14,7 +14,6 @@ import {
   IMarker
 } from "../types/types";
 import ActivityMap from "./Map";
-import { act } from "react-dom/test-utils";
 
 const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
@@ -47,10 +46,9 @@ const Title = ({
 export class ApiRequests {
   static getActivities = async (locations: any) => {
     try {
-      const response: IActivityResponse = await axios.post(
-        "/api/activities",
-        { locations }
-      );
+      const response: IActivityResponse = await axios.post("/api/activities", {
+        locations
+      });
       return response.data;
     } catch (err) {
       return err;
@@ -76,7 +74,7 @@ const Home = () => {
   const [isLoading, setLoading] = useState(true);
   const [markers, setMarkers] = useState([]);
 
-  const [center, setCenter] = useState({lat: 54.687157, lng: 25.279652 })
+  const [center, setCenter] = useState({ lat: 54.687157, lng: 25.279652 });
 
   const iterateMarkers = (activites: IActivity[]): IMarker[] =>
     activites.map(({ id, spot, category }) => ({
@@ -121,7 +119,7 @@ const Home = () => {
   function selectCategory(index: number) {
     // @ts-ignore, FIXME: don't know why the ...categories works
     categories[index].isSelected = !categories[index].isSelected;
-    console.log('Categories: ', categories);
+    console.log("Categories: ", categories);
     setCategories([...categories]);
 
     const activities = selectCategoryActivities();
@@ -150,19 +148,21 @@ const Home = () => {
     }
   }
 
-  const updateActivitiesByLocations = async (locations) => {
+  const updateActivitiesByLocations = async locations => {
     try {
-      setLoading(true)
-      const response = await ApiRequests.getActivities(locations)
-      setLoading(false)
-      
-      setActivities([...response])
-      setFiltredActivities([...response])
-      setLocations([...locations])
+      setLoading(true);
+      const response = await ApiRequests.getActivities(locations);
+      setLoading(false);
+
+      setActivities([...response]);
+      setFiltredActivities([...response]);
+      setLocations([...locations]);
+      const parsedMarkers = iterateMarkers(response);
+      setMarkers(parsedMarkers);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -172,15 +172,18 @@ const Home = () => {
           md={6}
           xl={6}
           style={{
-            height: 'calc(100vh - 100px)',
-            overflowY: 'scroll',
-            scrollbarWidth: 'none',
-            overflowX: 'hidden',
+            height: "calc(100vh - 100px)",
+            overflowY: "scroll",
+            scrollbarWidth: "none",
+            overflowX: "hidden",
             padding: 0
           }}
         >
           <Container>
-            <Filters locations={locations} setLocations={updateActivitiesByLocations} />
+            <Filters
+              locations={locations}
+              setLocations={updateActivitiesByLocations}
+            />
 
             {isLoading ? (
               <div style={{ textAlign: "center", margin: 20 }}>
@@ -189,28 +192,31 @@ const Home = () => {
             ) : (
               <>
                 <Container>
-                <Categories
-                  categories={categories}
-                  selectCategory={selectCategory}
-                />
-                <Title
-                  activityLength={filtredActivities.length}
-                  title="Veiklos"
-                />
-                <ActivityList
-                  activities={filtredActivities}
-                  categories={categories}
-                  setCenter={setCenter}
-                />
+                  <Categories
+                    categories={categories}
+                    selectCategory={selectCategory}
+                  />
+                  <Title
+                    activityLength={filtredActivities.length}
+                    title="Veiklos"
+                  />
+                  <ActivityList
+                    activities={filtredActivities}
+                    categories={categories}
+                    setCenter={setCenter}
+                  />
                 </Container>
-
               </>
             )}
           </Container>
         </Col>
 
         <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-          <ActivityMap markers={markers} locations={locations} center={center}/>
+          <ActivityMap
+            markers={markers}
+            locations={locations}
+            center={center}
+          />
         </OnlyMobile>
       </Row>
     </Layout>
