@@ -19,6 +19,7 @@ class ActivitiesService {
           records.forEach(({ fields }: any) => {
             activities.push({
               id: fields.Id,
+              description: fields.Description,
               photo: fields.Photo,
               rating: fields.Rating,
               ratingCount: fields.RatingCount,

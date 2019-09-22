@@ -10,6 +10,7 @@ export interface Spot {
 export interface Activity {
   id: number;
   photo: string;
+  description: string;
   rating: number;
   ratingCount: number;
   price: number;

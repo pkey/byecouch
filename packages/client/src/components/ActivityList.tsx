@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Title = styled.h5``;
-const Description = styled.p``;
+const Description = styled.p`
+  font-size: 12px;
+`;
 
 const Rating = styled.div`
   display: flex;
@@ -85,7 +87,7 @@ const ActivityList = ({ activities }: any) => {
                     {activity.spot.name || ""} - {activity.spot.address  || ""}
                   </span>
                   <Title>{activity.name}</Title>
-                  <Description>{activity.description}</Description>
+                  <Description>{!activity.description ? "" : activity.description.substr(0, 100) + "..."}</Description>
                   <Rating>
                     <RateStars
                       disabled
