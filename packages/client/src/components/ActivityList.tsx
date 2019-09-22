@@ -3,6 +3,7 @@ import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { IActivity } from "../types/types";
 
 const Title = styled.h5``;
 const Description = styled.p`
@@ -47,7 +48,7 @@ const MobileCol = styled(Col)`
   }
 `
 
-const ActivityList = ({ activities }: any) => {
+const ActivityList = ({ activities, setCenter }: any) => {
 
   console.log(activities)
   return (
@@ -58,8 +59,19 @@ const ActivityList = ({ activities }: any) => {
         pageSize: 10
       }}
       dataSource={activities}
-      renderItem={(activity: any) => (
-        <List.Item style={{ padding: 20 }}>
+      renderItem={(activity: IActivity) => (
+        <List.Item 
+        onMouseEnter={() => {
+          const newCenter = {
+            lat: Number(activity.spot.latitude),
+            lng: Number(activity.spot.longitude)
+          }
+
+          console.log(newCenter)
+          setCenter(Object.assign(newCenter, {}))
+          
+        }}
+         style={{ padding: 20 }}>
           <MobileCard
             hoverable 
             bodyStyle={{ padding: 0 }}
@@ -87,7 +99,7 @@ const ActivityList = ({ activities }: any) => {
                     {activity.spot.name || ""} - {activity.spot.address  || ""}
                   </span>
                   <Title>{activity.name}</Title>
-                  <Description>{!activity.description ? "" : activity.description.substr(0, 100) + "..."}</Description>
+                  <Description>{!activity.description ? "" : activity.description.substr(0, 60) + "..."}</Description>
                   <Rating>
                     <RateStars
                       disabled

@@ -8,16 +8,7 @@ import Marker from "../components/Marker";
 const AnyReactComponent: any = ({ text }: any) => <div><Icon style={{fontSize:'20px'}} type="pushpin" />{text}</div>;
 
 class ActivityMap extends Component<MapProps> {
-    static defaultProps: MapProps= {
-        center: {
-            lat: 54.687157,
-            lng: 25.279652
-        },
-        zoom: 14,
-        markers: [
-            {lat: "54.687157" , lng: "25.279652", activityTitle: 'Activity title'}
-        ]
-    };
+
 
     render() {
         const displayedMarkers = [];
@@ -31,8 +22,10 @@ class ActivityMap extends Component<MapProps> {
             <div style={{ height: "calc(100vh - 68px)", width: '100vh'}}>
                 <GoogleMapReact
                     bootstrapURLKeys={{ key: 'AIzaSyB-1JgX4yKF6F7uukm_co468kH3JUSY3Pw' }}
-                    defaultCenter={{lat: this.props.center.lat, lng: this.props.center.lng}}
-                    defaultZoom={this.props.zoom}
+                    // @ts-ignore
+                    // defaultCenter={this.props.center}
+                    center={this.props.center}
+                    defaultZoom={14}
                 >
                     {displayedMarkers}
                 </GoogleMapReact>

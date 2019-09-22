@@ -1,7 +1,12 @@
 export interface MapProps {
-  center: { lat: number; lng: number };
+  center: ICenter;
   zoom: number;
   markers?: IMarker[];
+}
+
+export interface ICenter {
+  lat: number;
+  lng: number
 }
 
 export interface IMarker {
@@ -36,6 +41,7 @@ export interface ICategorySelected {
 export interface IActivity {
   id: number;
   name: string;
+  description: string;
   photo: string;
   rating: number;
   ratingCount: number;

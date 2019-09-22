@@ -75,6 +75,8 @@ const Home = () => {
   const [isLoading, setLoading] = useState(true);
   const [markers, setMarkers] = useState([]);
 
+  const [center, setCenter] = useState({lat: 54.687157, lng: 25.279652 })
+
   const iterateMarkers = (activites: IActivity[]): IMarker[] =>
     activites.map(({ id, spot, category }) => ({
       lat: spot.latitude,
@@ -194,6 +196,7 @@ const Home = () => {
                 <ActivityList
                   activities={filtredActivities}
                   categories={categories}
+                  setCenter={setCenter}
                 />
                 </Container> 
                 
@@ -203,7 +206,7 @@ const Home = () => {
         </Col>
 
         <OnlyMobile xs={0} sm={0} md={0} xl={6}>
-          <ActivityMap markers={markers} />
+          <ActivityMap zoom={14} markers={markers} center={center} />
         </OnlyMobile>
       </Row>
     </Layout>
