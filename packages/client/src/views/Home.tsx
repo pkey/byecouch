@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
-
+import { Spin } from "antd";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import styled from "styled-components";
+import ActivityList from "../components/ActivityList";
+import Categories from "../components/Categories";
+import Filters from "../components/Filters";
+import Layout from "../components/Layout";
 import {
-  IMarker,
   IActivity,
   ICategory,
-  ICategorySelected
-} from '../types/types';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Spin } from 'antd';
-
-import ActivityMap from './Map';
-import Layout from '../components/Layout';
-import Filters from '../components/Filters';
-import Categories from '../components/Categories';
-import ActivityList from '../components/ActivityList';
+  ICategorySelected,
+  IMarker
+} from "../types/types";
+import ActivityMap from "./Map";
 
 const OnlyMobile = styled(Col)`
   @media screen and (max-device-width: 760px) {
@@ -49,7 +47,7 @@ class ApiRequests {
   static getActivities = async (locations: any) => {
     try {
       const response: IActivityResponse = await axios.post(
-        '/api/activities',
+        "/api/activities",
         {}
       );
       return response.data;
@@ -60,7 +58,7 @@ class ApiRequests {
 
   static getCategories = async () => {
     try {
-      const response: ICategoryResponse = await axios('/api/categories');
+      const response: ICategoryResponse = await axios("/api/categories");
       return response.data;
     } catch (err) {
       return err;
@@ -164,7 +162,7 @@ const Home = () => {
             <Filters locations={locations} setLocations={setLocations} />
 
             {isLoading ? (
-              <div style={{ textAlign: 'center', margin: 20 }}>
+              <div style={{ textAlign: "center", margin: 20 }}>
                 <Spin tip="Kraunasi..." />
               </div>
             ) : (
