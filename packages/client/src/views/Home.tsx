@@ -150,8 +150,6 @@ const Home = () => {
     try {
       const response = await ApiRequests.getActivities(locations)
 
-      console.log("HERE >>> ")
-      console.log(response)
       setActivities([...response])
       setFiltredActivities([...response])
       setLocations([...locations])
@@ -184,6 +182,7 @@ const Home = () => {
               </div>
             ) : (
               <>
+                <Container>
                 <Categories
                   categories={categories}
                   selectCategory={selectCategory}
@@ -196,6 +195,8 @@ const Home = () => {
                   activities={filtredActivities}
                   categories={categories}
                 />
+                </Container> 
+                
               </>
             )}
           </Container>
