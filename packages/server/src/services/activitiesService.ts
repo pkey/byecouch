@@ -5,7 +5,7 @@ class ActivitiesService {
   private airtable: Airtable;
   private activitiesBase: Airtable.Base;
   constructor() {
-    this.airtable = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY });
+    this.airtable = new Airtable({ apiKey: "keyro1or7zPyri99K" });
     this.activitiesBase = this.airtable.base("app0v46hnuh0dHIob");
   }
 
@@ -105,13 +105,13 @@ class ActivitiesService {
           await this.activitiesBase('Events')
             .find(id).then((record: any) => {
                 let fields: any = record.fields;
-                let activity: ActivityEvent = {
+                let activityEvent: ActivityEvent = {
                   start: fields.From,
                   end: fields.To,
                   busy: fields.Busy,
                   day: fields.Day
                 };
-                event = activity;
+                event = activityEvent;
                 
             });
           return event;
@@ -120,38 +120,38 @@ class ActivitiesService {
         }
       }
 
-      async getActivity(id) {
-        try {
-          const activities: Activity[] = [];
-    
-          await this.activitiesBase('Activities')
-            .select({ view: 'Grid view', filterByFormula: 'ID = ' + id })
-            .eachPage((records, fetchNextPage) => {
-              records.forEach(({ fields }: any) => {
-                activities.push({
-                  id: fields.Id,
-                  photo: fields.Photo,
-                  rating: fields.Rating,
-                  ratingCount: fields.RatingCount,
-                  price: fields.Price,
-                  maxPeople: fields.MaxPeople,
-                  link: fields.Link,
-                  phoneNumber: fields.PhoneNumber,
-                  category: fields.Category,
-                  email: fields.Email,
-                  events: fields.Events,
-                  name: fields.Name,
-                  spot: fields.Spot
-                });
-              });
-    
-              fetchNextPage();
-            });
-    
-          return activities;
-        } catch (err) {
-          return err;
-        }
-      }
+  async getActivity(id) {
+    try {
+      const activities: Activity[] = [];
+
+      await this.activitiesBase("Activities")
+        .select({ view: "Grid view", filterByFormula: 'ID = ' + 1 })
+        .eachPage((records, fetchNextPage) => {
+          records.forEach(({ fields }: any) => {
+            activities.push({
+              id: fields.Id,
+              photo: fields.Photo,
+              rating: fields.Rating,
+              ratingCount: fields.RatingCount,
+              price: fields.Price,
+              maxPeople: fields.MaxPeople,
+              link: fields.Link,
+              phoneNumber: fields.PhoneNumber,
+              email: fields.Email,
+              category: fields.Category[0],
+              events: fields.Events,
+              name: fields.Name,
+              spot: fields.Spot[0]
+            });
+          });
+
+          fetchNextPage();
+        });
+
+      return activities;
+    } catch (err) {
+      return err;
+    }
+  }
 }
 export default new ActivitiesService();

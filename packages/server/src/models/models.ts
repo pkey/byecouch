@@ -17,7 +17,7 @@ export interface Activity {
   link: string;
   phoneNumber: string;
   category: ActivityCategory;
-  events: ActivityEvent[];
+  events: string[];
   email: string;
   spot: Spot;
   name: string;

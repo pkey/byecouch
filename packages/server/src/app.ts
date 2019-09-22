@@ -1,7 +1,7 @@
 require("dotenv").config();
 import body_parser from "body-parser";
 import express, { Request, Response } from "express";
-import { Activity } from "./models/models";
+import { Activity, ActivityEvent } from "./models/models";
 import activitiesService from "./services/activitiesService";
 import locationService from "./services/locationService";
 const app = express().use(body_parser.json());
@@ -57,25 +57,24 @@ app.get('/activity', async (req: Request, res: Response) => {
       }
       const activity = activities[0];
       const spots = await activitiesService.getSpots();
+      const categories = await activitiesService.getCategories();
   
-      const merged = []
+      const mappedEvents: ActivityEvent[] = [];
+
+      for (const val of activity.events) {
+        const result = await activitiesService.getEvent(val);
+        mappedEvents.push(result);
+      }
   
-      activity.events.forEach(eventId => {
-        var eventPromise = activitiesService.getEvent(eventId);
-        eventPromise.then(event => {
-          console.log(event);
-        });
-      });
-  
-      spots.forEach(spot => {
-        if ( activity.spot[0] === spot.id) {
-          merged.push({
-            ...activity,
-            spot
-          })
-        }
-      })
-      res.send(merged);
+      const activitiesRes =  {
+        ...activity,
+        spot: spots.filter(spot => spot.id === activity.spot)[0],
+        category: categories.filter(
+          category => category.id === activity.category
+        )[0],
+        events: mappedEvents
+      };
+      res.send(activitiesRes);
     } catch (err) {
       console.log(err);
       res.send({ err: err.toString() });
