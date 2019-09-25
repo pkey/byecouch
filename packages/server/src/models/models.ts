@@ -18,7 +18,7 @@ export interface Activity {
   link: string;
   phoneNumber: string;
   category: ActivityCategory;
-  events: ActivityEvent[];
+  events: string[];
   email: string;
   spot: Spot;
   name: string;
@@ -33,6 +33,8 @@ export interface ActivityCategory {
 export interface ActivityEvent {
   start: string;
   end: string;
+  busy: boolean;
+  day: string;
 }
 
 export interface Location {
